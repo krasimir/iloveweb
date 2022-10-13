@@ -42,7 +42,7 @@ module.exports = function (req, res) {
         <body>
           <div id="app"></div>
           <script>${JS}</script>
-          <script async src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+          <script async src=""></script>
         </body>
       </html>
     `
