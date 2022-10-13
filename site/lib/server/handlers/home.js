@@ -1,16 +1,18 @@
 const fs = require('fs');
 
 const CSS = fs.readFileSync(__dirname + '/../../public/css/styles.css').toString('utf8');
+const JS = fs.readFileSync(__dirname + '/../../public/js/app.js').toString('utf8');
 
 module.exports = function (req, res) {
   res.setHeader('Content-Type', 'text/html');
 
   const details = {
-    title: 'I Love Web',
-    description: 'I Love Web',
+    title: 'I ❤️ Web',
+    description: 'I ❤️ Web',
     url: 'https://iloveweb.dev',
     ogImage: ''
   }
+
   res.send(
     `<!DOCTYPE html>
       <html lang="en">
@@ -39,13 +41,8 @@ module.exports = function (req, res) {
         </head>
         <body>
           <div id="app"></div>
-          <script async src="/js/app.js"></script>
-          <script async src="/js/cssparser.min.js"></script>
-          <script async src="/js/html2json.js"></script>
-          <script async src="/js/htmlparser.min.js"></script>
-          <script async src="/js/lodash.min.js"></script>
-          <script async src="/js/parsel.js"></script>
-          <script async src="/js/specificity.js"></script>
+          <script>${JS}</script>
+          <script async src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
         </body>
       </html>
     `

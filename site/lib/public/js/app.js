@@ -1,1 +1,1 @@
-(()=>{console.log("hello");})();
+(()=>{function c({content:i,container:d,clickEvents:l,overEvents:f,onRender:t}){let e=d||document.querySelector("#app");if(!e){console.warn("Render: DOM element not found.");return}e.innerHTML=i,setTimeout(()=>{[{event:"click",handlers:l},{event:"mouseover",handler:f}].forEach(({event:a,handlers:o})=>{o&&Object.keys(o).forEach(n=>{(e.querySelectorAll(`[data-event="${n}"]`)||[]).forEach(r=>{r&&r.addEventListener(a,s=>o[n](s))})})}),t&&t()},0)}window.addEventListener("load",()=>{c({content:"hello"})});})();

@@ -1,8 +1,17 @@
 {
   "inputs": {
-    "lib/client/js/index.js": {
-      "bytes": 21,
+    "lib/client/js/utils/helpers.js": {
+      "bytes": 853,
       "imports": []
+    },
+    "lib/client/js/index.js": {
+      "bytes": 123,
+      "imports": [
+        {
+          "path": "lib/client/js/utils/helpers.js",
+          "kind": "import-statement"
+        }
+      ]
     }
   },
   "outputs": {
@@ -11,11 +20,14 @@
       "exports": [],
       "entryPoint": "lib/client/js/index.js",
       "inputs": {
+        "lib/client/js/utils/helpers.js": {
+          "bytesInOutput": 440
+        },
         "lib/client/js/index.js": {
-          "bytesInOutput": 21
+          "bytesInOutput": 59
         }
       },
-      "bytes": 33
+      "bytes": 511
     }
   }
 }
