@@ -1,0 +1,3 @@
+node_modules
+lib/server/cred.json
+cloudbuild.yaml

@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "lib/client/js/index.js": {
+      "bytes": 21,
+      "imports": []
+    }
+  },
+  "outputs": {
+    "lib/public/js/app.js": {
+      "imports": [],
+      "exports": [],
+      "entryPoint": "lib/client/js/index.js",
+      "inputs": {
+        "lib/client/js/index.js": {
+          "bytesInOutput": 21
+        }
+      },
+      "bytes": 33
+    }
+  }
+}
