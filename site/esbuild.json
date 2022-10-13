@@ -4,11 +4,24 @@
       "bytes": 2226,
       "imports": []
     },
-    "lib/client/js/index.js": {
-      "bytes": 892,
+    "lib/client/js/editor.js": {
+      "bytes": 581,
       "imports": [
         {
           "path": "lib/client/js/utils/helpers.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "lib/client/js/index.js": {
+      "bytes": 1115,
+      "imports": [
+        {
+          "path": "lib/client/js/utils/helpers.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "lib/client/js/editor.js",
           "kind": "import-statement"
         }
       ]
@@ -23,11 +36,14 @@
         "lib/client/js/utils/helpers.js": {
           "bytesInOutput": 1097
         },
+        "lib/client/js/editor.js": {
+          "bytesInOutput": 299
+        },
         "lib/client/js/index.js": {
-          "bytesInOutput": 662
+          "bytesInOutput": 789
         }
       },
-      "bytes": 1771
+      "bytes": 2197
     }
   }
 }

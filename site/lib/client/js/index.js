@@ -1,4 +1,5 @@
 import { render, center, loadJS, $ } from './utils/helpers';
+import { showEditor } from './editor';
 
 const APP_DEPS = [
   '/js/cssparser.min.js',
@@ -9,10 +10,6 @@ const APP_DEPS = [
   '/js/specificity.js',
   'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js'
 ];
-
-window.addEventListener('load', () => {
-  loadDependencies(APP_DEPS);
-});
 
 async function loadDependencies(deps) {
   let done = 0;
@@ -30,6 +27,19 @@ async function loadDependencies(deps) {
   await Promise.all(deps.map(async (dep) => {
     await loadJS(dep);
     done += 1;
-    $('.value').setAttribute('style', `width:${Math.ceil(done / deps.length * 100)}%;`)
+    $('.value').style.width = `width:${Math.ceil(done / deps.length * 100)}%;`
   }));
+  $('.loader').style.opacity = 0;
+  setTimeout(showEditor, 600);
 }
+
+window.ILoveWeb = ILoveWeb = {
+  questions: [],
+  load(question) {
+    this.questions.push(question);
+  }
+}
+
+window.addEventListener('load', () => {
+  loadDependencies([...APP_DEPS, ...QUESTIONS]);
+});

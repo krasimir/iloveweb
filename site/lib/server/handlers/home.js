@@ -13,6 +13,10 @@ module.exports = function (req, res) {
     ogImage: ''
   }
 
+  const questions = [
+    '/questions/1.js'
+  ];
+
   res.send(
     `<!DOCTYPE html>
       <html lang="en">
@@ -41,6 +45,7 @@ module.exports = function (req, res) {
         </head>
         <body>
           <div id="app"></div>
+          <script>const QUESTIONS = ${JSON.stringify(questions)}</script>
           <script>${JS}</script>
           <script async src=""></script>
         </body>
