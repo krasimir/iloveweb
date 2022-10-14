@@ -8,7 +8,8 @@ const APP_DEPS = [
   '/js/lodash.min.js',
   '/js/parsel.js',
   '/js/specificity.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js'
+  'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js'
 ];
 
 async function loadDependencies(deps) {
@@ -27,10 +28,9 @@ async function loadDependencies(deps) {
   await Promise.all(deps.map(async (dep) => {
     await loadJS(dep);
     done += 1;
-    $('.value').style.width = `width:${Math.ceil(done / deps.length * 100)}%;`
+    $('.value').style.width = `width:${Math.ceil(done / deps.length * 100)}%;`;
   }));
-  $('.loader').style.opacity = 0;
-  setTimeout(showEditor, 600);
+  gsap.to('.loader', { y: '-100px', opacity: 0, ease: "back.in(1.7)", onComplete: showEditor })
 }
 
 window.ILoveWeb = ILoveWeb = {

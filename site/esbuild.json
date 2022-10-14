@@ -5,7 +5,7 @@
       "imports": []
     },
     "lib/client/js/editor.js": {
-      "bytes": 581,
+      "bytes": 1302,
       "imports": [
         {
           "path": "lib/client/js/utils/helpers.js",
@@ -14,7 +14,7 @@
       ]
     },
     "lib/client/js/index.js": {
-      "bytes": 1115,
+      "bytes": 1215,
       "imports": [
         {
           "path": "lib/client/js/utils/helpers.js",
@@ -37,13 +37,13 @@
           "bytesInOutput": 1097
         },
         "lib/client/js/editor.js": {
-          "bytesInOutput": 299
+          "bytesInOutput": 797
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 789
+          "bytesInOutput": 882
         }
       },
-      "bytes": 2197
+      "bytes": 2788
     }
   }
 }

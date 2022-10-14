@@ -1,24 +1,43 @@
 import { render, center, loadJS, $ } from './utils/helpers';
 
+const indent = '    ';
+
 export function showEditor() {
   render({
     content: `
-      <div class="editor w500">
-        <div class="area mxauto" contenteditable="true"></div>
+      <div class="editor">
+        <section class="question">
+          <div>A question here</div>
+        </section>
+        <section class="area">
+          <textarea rows="1"></textarea>
+        </section>
       </div>
     `,
     onRender() {
-      const area = $('.editor .area');
-      area.innerHTML = '&nbsp;'
-      area.focus();
-      area.addEventListener('keydown', (e) => {
-        if (area.innerText === '') {
-          area.innerHTML = '&nbsp;';
+      const textarea = $('.editor textarea');
+
+      function resizeAndPosition() {
+        textarea.style.height = 'auto';
+        textarea.style.height = this.scrollHeight + 'px';
+        const rect = textarea.getBoundingClientRect();
+        textarea.style.marginTop = ((window.innerHeight - rect.height) / 2) + 'px'
+      }
+
+      textarea.focus();
+      textarea.addEventListener('input', resizeAndPosition);
+      textarea.addEventListener('keydown', function (e) {
+        if (e.key == 'Tab') {
+          e.preventDefault();
+          const start = this.selectionStart;
+          const end = this.selectionEnd;
+          this.value = this.value.substring(0, start) + indent + this.value.substring(end);
+          this.selectionStart = this.selectionEnd = start + 1;
         }
-        // e.preventDefault();
-        // e.stopPropagation();
       });
+
+      resizeAndPosition();
+      gsap.fromTo(textarea, { y: '100px', opacity: 0 }, { y: 0, opacity: 1 });
     }
   });
-  center('.editor');
 }

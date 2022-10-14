@@ -1,5 +1,6 @@
 :root {
   --bg-color: #151617;
+  --bg-color-lighter: #222425;
   --text-color: #e9e9e9;
   --text-color-light: #5b5b5b;
   --brand-color-1: #FF7E7E;
@@ -34,10 +35,6 @@ h1, h2, h3, p, ul, li {
 .w500 { width: 500px; }
 
 /* ---- loader ---- */
-.loader {
-  opacity: 1;
-  transition: opacity 600ms ease-in;
-}
 .loader .progress {
   width: 60%;
   border: solid 1px var(--text-color-light);
@@ -58,11 +55,27 @@ h1, h2, h3, p, ul, li {
 }
 
 /* ---- editor ---- */
-.editor .area {
+.editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.area {
+  
+}
+.area textarea {
+  font-family: 'Courier New', Courier, monospace;
+  display: block;
+  width: 100%;
   background: none;
   border: none;
   outline: none;
   color: var(--text-color);
-  font-size: 1.5em;
+  font-size: 1em;
+  font-size: 1.2em;
+  line-height: 1.2em;
   resize: none;
+  overflow: hidden;
+  padding: 1em;
+  background: var(--bg-color-lighter);
 }
