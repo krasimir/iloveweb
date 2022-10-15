@@ -29,7 +29,7 @@ export function render({ content, container, clickEvents, overEvents, onRender }
       }
     });
     if (onRender) {
-      onRender();
+      setTimeout(onRender, 0)
     }
     initLottie();
   }, 0);

@@ -1,27 +1,22 @@
 {
   "inputs": {
-    "lib/client/js/utils/helpers.js": {
-      "bytes": 2226,
+    "lib/client/js/api.js": {
+      "bytes": 2540,
       "imports": []
     },
-    "lib/client/js/editor.js": {
-      "bytes": 1302,
-      "imports": [
-        {
-          "path": "lib/client/js/utils/helpers.js",
-          "kind": "import-statement"
-        }
-      ]
+    "lib/client/js/utils/helpers.js": {
+      "bytes": 2238,
+      "imports": []
     },
     "lib/client/js/index.js": {
-      "bytes": 1215,
+      "bytes": 3203,
       "imports": [
         {
-          "path": "lib/client/js/utils/helpers.js",
+          "path": "lib/client/js/api.js",
           "kind": "import-statement"
         },
         {
-          "path": "lib/client/js/editor.js",
+          "path": "lib/client/js/utils/helpers.js",
           "kind": "import-statement"
         }
       ]
@@ -33,17 +28,17 @@
       "exports": [],
       "entryPoint": "lib/client/js/index.js",
       "inputs": {
-        "lib/client/js/utils/helpers.js": {
-          "bytesInOutput": 1097
+        "lib/client/js/api.js": {
+          "bytesInOutput": 1394
         },
-        "lib/client/js/editor.js": {
-          "bytesInOutput": 797
+        "lib/client/js/utils/helpers.js": {
+          "bytesInOutput": 1109
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 882
+          "bytesInOutput": 1803
         }
       },
-      "bytes": 2788
+      "bytes": 4318
     }
   }
 }

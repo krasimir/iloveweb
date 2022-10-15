@@ -2,6 +2,9 @@ const fs = require('fs');
 
 const CSS = fs.readFileSync(__dirname + '/../../public/css/styles.css').toString('utf8');
 const JS = fs.readFileSync(__dirname + '/../../public/js/app.js').toString('utf8');
+const PATH_TO_QUESTIONS = `${__dirname}/../../public/questions`;
+
+const questions = fs.readdirSync(PATH_TO_QUESTIONS).map(file => `/questions/${file}`);
 
 module.exports = function (req, res) {
   res.setHeader('Content-Type', 'text/html');
@@ -12,10 +15,6 @@ module.exports = function (req, res) {
     url: 'https://iloveweb.dev',
     ogImage: ''
   }
-
-  const questions = [
-    '/questions/1.js'
-  ];
 
   res.send(
     `<!DOCTYPE html>
@@ -48,6 +47,7 @@ module.exports = function (req, res) {
           <script>const QUESTIONS = ${JSON.stringify(questions)}</script>
           <script>${JS}</script>
           <script async src=""></script>
+          <iframe id="exerciseFrame"></iframe>
         </body>
       </html>
     `
