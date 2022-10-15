@@ -22,6 +22,7 @@
     "esbuild": "0.14.28",
     "express": "4.17.1",
     "lodash": "4.17.21",
-    "node-fetch": "2"
+    "node-fetch": "2",
+    "sanitize": "^2.1.2"
   }
 }

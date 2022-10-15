@@ -31,7 +31,6 @@ export function render({ content, container, clickEvents, overEvents, onRender }
     if (onRender) {
       setTimeout(onRender, 0)
     }
-    initLottie();
   }, 0);
 }
 export function LottieImage(file, cls, options = {}) {
@@ -59,21 +58,21 @@ export function center(sel) {
   el.style.top = ((height / 2) - (rect.height / 2)) + 'px';
   el.style.left = ((width / 2) - (rect.width / 2)) + 'px';
 }
+function padTo2Digits(num) {
+  return num.toString().padStart(2, '0');
+}
+function padTo3Digits(num) {
+  return num.toString().padStart(3, '0');
+}
+export function convertMsToHM(milliseconds) {
+  let mill = milliseconds % 1000;
+  let seconds = Math.floor(milliseconds / 1000);
+  let minutes = Math.floor(seconds / 60);
+  let hours = Math.floor(minutes / 60);
+  seconds = seconds % 60;
+  minutes = seconds >= 30 ? minutes + 1 : minutes;
+  minutes = minutes % 60;
+  hours = hours % 24;
 
-function initLottie() {
-  const els = $$('.lottie');
-  els.forEach(el => {
-    if (el.lottieDone) return;
-    el.lottieDone = true;
-    const options = JSON.parse(decodeURIComponent(el.getAttribute('data-options')));
-    const player = lottie.loadAnimation({
-      container: el,
-      renderer: 'svg',
-      loop: true,
-      autoplay: false,
-      path: el.getAttribute('data-file'),
-      ...options
-    });
-    // player.setSpeed(4);
-  });
+  return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
 }

@@ -4,10 +4,17 @@ const CSS = fs.readFileSync(__dirname + '/../../public/css/styles.css').toString
 const JS = fs.readFileSync(__dirname + '/../../public/js/app.js').toString('utf8');
 const PATH_TO_QUESTIONS = `${__dirname}/../../public/questions`;
 
-const questions = fs.readdirSync(PATH_TO_QUESTIONS).map(file => `/questions/${file}`);
+let questions = fs.readdirSync(PATH_TO_QUESTIONS).map(file => `/questions/${file}`);
 
 module.exports = function (req, res) {
   res.setHeader('Content-Type', 'text/html');
+
+  if (req.queryString('q')) {
+    const file = req.queryString('q');
+    if (fs.existsSync(`${PATH_TO_QUESTIONS}/${file}`)) {
+      questions = [`/questions/${file}`]
+    }
+  }
 
   const details = {
     title: 'I ❤️ Web',
