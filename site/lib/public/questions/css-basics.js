@@ -3,7 +3,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: 'Напиши CSS, който да зададе цвят на &lt;p> таг.',
+      text: 'Write CSS that sets color of a &lt;p> element.',
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;

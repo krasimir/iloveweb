@@ -3,13 +3,13 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: 'Напиши JavaScript функция с име "test". Нека резултът от нея да е думата "daskalo".',
+      text: 'Write a JavaScript function with name "test" that returns "iloveweb".',
       validator(code) {
         const f = new Function(`
           ${code};
           return test();
         `);
-        return f() === 'daskalo';
+        return f() === 'iloveweb';
       }
     }
   ]

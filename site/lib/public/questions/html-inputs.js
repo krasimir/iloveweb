@@ -3,7 +3,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: 'Добавете поле за избор на цвят.',
+      text: 'And a HTML element that allows the user to pick a color.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -12,11 +12,10 @@ ILoveWeb.load({
           }
         });
         return success;
-      },
-      answer: '<input type="color" />'
+      }
     },
     {
-      text: 'Добавете поле за избор на дата.',
+      text: 'And a HTML element that allows the user to pick a date.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -25,11 +24,10 @@ ILoveWeb.load({
           }
         });
         return success;
-      },
-      answer: '<input type="date" />'
+      }
     },
     {
-      text: 'Създайте група от полета за избор "един от много".',
+      text: 'Create HTML input elements that answer on one-of-many question.',
       validator(tree) {
         let success = false;
         let groups = {};
@@ -44,11 +42,10 @@ ILoveWeb.load({
           }
         })
         return success;
-      },
-      answer: '<input type="radio" name="setting" value="a" />\n<input type="radio" name="setting" value="b" />'
+      }
     },
     {
-      text: 'Създайте падащо меню (select елемент).',
+      text: 'Create HTML that shows a drop-down menu.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -61,8 +58,7 @@ ILoveWeb.load({
           }
         });
         return success;
-      },
-      answer: '<select>\n  <option>a</option>\n  <option>b</option>\n</select>'
+      }
     }
   ]
 });

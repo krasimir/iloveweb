@@ -3,7 +3,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: `Напишете валиден CSS съдържащ селектор, чиите specificity е 130.`,
+      text: `Write a valid CSS selector with specificity equal to 130.`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;

@@ -3,7 +3,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: 'Нека предположим, че имаме страница с header и навигация от три &lt;a> таг-а. Напишете семантичен HTML, който да описва такава структура.',
+      text: 'Let\'s say that we have a page with header and navigation containing 3 &lt;a> tags. Write a semantically correct HTML for that structure.',
       validator(tree) {
         let numOfLinks = 0;
         window.walkHTML(tree, (el) => {

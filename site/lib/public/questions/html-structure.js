@@ -3,7 +3,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: 'Създай HTML страница заглавието, на която е "daskalo".',
+      text: 'Create HTML page that has a title "iloveweb".',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -11,39 +11,17 @@ ILoveWeb.load({
             (el.child || []).forEach(headChild => {
               if (headChild.tag === 'title') {
                 (headChild.child || []).forEach(titleChild => {
-                  success = titleChild.node === 'text' && titleChild.text.match(/daskalo/);
+                  success = titleChild.node === 'text' && titleChild.text.match(/iloveweb/);
                 });
               }
             })
           }
         });
         return success;
-      },
-      answer: '<head>\n  <title>daskalo</title>\n</head>'
+      }
     },
     {
-      text: 'На същата страница, добави заглавие (&lt;h1>) и параграф (&lt;p>).',
-      validator(tree) {
-        let pExists = false;
-        let h1Exists = false;
-        window.walkHTML(tree, (el) => {
-          if (el.tag === 'body') {
-            window.walkHTML(el, (bodyChild) => {
-              if (bodyChild.tag === 'p') {
-                pExists = true;
-              }
-              if (bodyChild.tag === 'h1') {
-                h1Exists = true;
-              }
-            });
-          }
-        });
-        return pExists && h1Exists;
-      },
-      answer: '<body>\n  <h1>Daskalo</h1>\n  <p>text</p>\n</body>'
-    },
-    {
-      text: 'Задай encoding-a на страницата "UTF-16".',
+      text: 'Set the encoding of a HTML page to "UTF-16".',
       validator(tree) {
         let metaExists = false;
         window.walkHTML(tree, (el) => {
@@ -52,8 +30,7 @@ ILoveWeb.load({
           }
         });
         return metaExists;
-      },
-      answer: '<meta charset="UTF-16" />'
+      }
     }
   ]
 });

@@ -8,7 +8,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: `Напишете CSS така, че размера на шрифта в параграфа да е с 10px по-голям от този в span елемента.${html2CodeText(CSS_VALUES_1_HTML)}`,
+      text: `Write CSS that sets the font size of the &lt;span> element to be 10px greater than the font size of the paragraph.`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;
@@ -23,11 +23,10 @@ ILoveWeb.load({
           });
         });
         return success;
-      },
-      answer: 'span {\n  font-size: 70px;\n}'
+      }
     },
     {
-      text: `Задайте на &lt;p> елемент плътен зелен цвят с прозрачност 0.5.`,
+      text: `Set the color of the paragraph to be solid green with 0.5% transparency.`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;
@@ -43,8 +42,7 @@ ILoveWeb.load({
           });
         });
         return success;
-      },
-      answer: 'p {\n  color: rgba(0, 255, 0, 0.5);\n}'
+      }
     }
   ]
 });
