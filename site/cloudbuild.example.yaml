@@ -1,0 +1,23 @@
+steps:
+  # Build the container image
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      ["builds", "submit", "--tag", "gcr.io/<...>/<...>"]
+  # Deploy container image to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "<cloud run name>",
+        "--image",
+        "gcr.io/<...>/<...>",
+        "--region",
+        # "us-east1",
+        "europe-west1",
+        "--platform",
+        "managed",
+        "--min-instances",
+        "0",
+        "--allow-unauthenticated",
+      ]

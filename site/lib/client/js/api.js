@@ -1,5 +1,7 @@
 const parsers = { html: validateHTML, css: validateCSS, javascript: validateJavaScript }
 
+const NUM_OF_QUESTIONS = 10;
+
 const ILoveWeb = {
   questions: [],
   load({ lang, tasks }) {
@@ -7,7 +9,8 @@ const ILoveWeb = {
       this.questions.push({ lang, question: task })
     });
   },
-  shuffle() {
+  initQuestions() {
+    // shuffle
     let currentIndex = this.questions.length, randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -16,6 +19,8 @@ const ILoveWeb = {
         this.questions[randomIndex], this.questions[currentIndex]
       ];
     }
+    // picking the first X
+    this.questions = this.questions.slice(0, NUM_OF_QUESTIONS);
   },
   check(code, idx, onSuccess, onLog) {
     const { lang, question } = this.questions[idx];

@@ -1,5 +1,5 @@
 import ILoveWeb from './api';
-import { render, center, loadJS, $, convertMsToHM } from './utils/helpers';
+import { render, center, loadFile, $, convertMsToHM, getTwitterShareURL } from './utils/helpers';
 
 const APP_DEPS = [
   '/js/cssparser.min.js',
@@ -9,7 +9,8 @@ const APP_DEPS = [
   '/js/parsel.js',
   '/js/specificity.js',
   'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js'
+  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js',
+  '/imgs/Cycle_custom_icon.json'
 ];
 
 async function loadDependencies(deps) {
@@ -26,7 +27,7 @@ async function loadDependencies(deps) {
   });
   center('.loader');
   await Promise.all(deps.map(async (dep) => {
-    await loadJS(dep);
+    await loadFile(dep);
     done += 1;
     $('.value').style.width = `width:${Math.ceil(done / deps.length * 100)}%;`;
   }));
@@ -40,7 +41,7 @@ async function loadDependencies(deps) {
         if (typeof _ !== 'undefined') {
           window.get = _.get;
         }
-        ILoveWeb.shuffle();
+        ILoveWeb.initQuestions();
         showEditor();
       }
     }
@@ -59,9 +60,7 @@ export function showEditor() {
         <div class="heart">❤️</div>
       </div>
       <div class="editor">
-        <section class="question">
-          <div class="mxauto maxw400 px2 op0"></div>
-        </section>
+        <section class="question"></section>
         <section class="area">
           <textarea rows="10" placeholder="My solution is ..." class="op0"></textarea>
           <div class="console"></div>
@@ -74,7 +73,7 @@ export function showEditor() {
       let time = 0;
       let timeInterval;
       const editorEl = $('.editor');
-      const questionEl = $('.editor .question div');
+      const questionEl = $('.editor .question');
       const textareaEl = $('.editor textarea');
       const consoleEl = $('.editor .console');
       const timeEl = $('.timer');
@@ -83,24 +82,7 @@ export function showEditor() {
       function showQuestion() {
         const question = ILoveWeb.questions[questionIdx];
         if (!question) {
-          if (player) { player.stop(); }
-          clearInterval(timeInterval);
-          editorEl.style.display = 'block';
-          render({
-            container: editorEl,
-            content: `
-              <section class="w500 mxauto">
-                <h1 class="tac">Congratulations!</h1>
-                <small class="block tac">You really ❤️ the web.</small>
-                <p class="tac mt1">
-                  Your result: ${convertMsToHM(time)}
-                  <br /><br />
-                  <a href="">Share</a>
-                </p>
-              </section>
-            `
-          });
-          gsap.fromTo(editorEl, { y: '100px', opacity: 0 }, { y: 0, opacity: 1, ease: 'back.out(1.7)', duration: 1.4 });
+          win();
           return;
         }
         render({
@@ -108,6 +90,29 @@ export function showEditor() {
           container: questionEl
         });
         gsap.fromTo(questionEl, { y: '100px', opacity: 0 }, { y: 0, opacity: 1 });
+      }
+      function win() {
+        if (player) { player.stop(); }
+        clearInterval(timeInterval);
+        editorEl.style.display = 'block';
+        render({
+          container: editorEl,
+          content: `
+            <section class="w500 mxauto">
+              <h1 class="tac">Congratulations!</h1>
+              <small class="block tac">You really ❤️ the web.</small>
+              <p class="tac mt1">
+                Your result: ${convertMsToHM(time)}
+                <br /><br />
+                <a href="https://twitter.com/intent/tweet?text=${getTwitterShareURL(convertMsToHM(time))}">
+                  <img src="/imgs/twitter.svg" width="20"/>
+                  Share
+                </a>
+              </p>
+            </section>
+          `
+        });
+        gsap.fromTo(editorEl, { y: '100px', opacity: 0 }, { y: 0, opacity: 1, ease: 'back.out(1.7)', duration: 1.4 });
       }
 
       // ------------------------------------------------------------------------------ textarea

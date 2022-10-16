@@ -1,15 +1,20 @@
 {
   "inputs": {
     "lib/client/js/api.js": {
-      "bytes": 2540,
+      "bytes": 2682,
       "imports": []
     },
     "lib/client/js/utils/helpers.js": {
-      "bytes": 2343,
-      "imports": []
+      "bytes": 2732,
+      "imports": [
+        {
+          "path": "lib/client/js/api.js",
+          "kind": "import-statement"
+        }
+      ]
     },
     "lib/client/js/index.js": {
-      "bytes": 5813,
+      "bytes": 5999,
       "imports": [
         {
           "path": "lib/client/js/api.js",
@@ -29,16 +34,16 @@
       "entryPoint": "lib/client/js/index.js",
       "inputs": {
         "lib/client/js/api.js": {
-          "bytesInOutput": 1394
+          "bytesInOutput": 1446
         },
         "lib/client/js/utils/helpers.js": {
-          "bytesInOutput": 998
+          "bytesInOutput": 1316
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 3318
+          "bytesInOutput": 3430
         }
       },
-      "bytes": 5722
+      "bytes": 6204
     }
   }
 }

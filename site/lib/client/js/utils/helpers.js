@@ -1,3 +1,5 @@
+import ILoveWeb from "../api";
+
 export function $(sel) {
   return document.querySelector(sel);
 }
@@ -41,12 +43,16 @@ export function LottieImage(file, cls, options = {}) {
   }
   return `<div ${Object.keys(attrs).map(name => `${name}="${attrs[name]}"`).join(' ')}></div>`;
 }
-export async function loadJS(file) {
+export async function loadFile(file) {
   return new Promise(done => {
-    const script = document.createElement('script');
-    script.onload = done;
-    script.src = file;
-    document.head.appendChild(script); 
+    if (file.match(/\.js$/)) {
+      const script = document.createElement('script');
+      script.onload = done;
+      script.src = file;
+      document.head.appendChild(script);
+    } else {
+      fetch(file).then(done);
+    }
   });
 }
 export function center(sel) {
@@ -61,11 +67,7 @@ export function center(sel) {
 function padTo2Digits(num) {
   return num.toString().padStart(2, '0');
 }
-function padTo3Digits(num) {
-  return num.toString().padStart(3, '0');
-}
 export function convertMsToHM(milliseconds) {
-  let mill = milliseconds % 1000;
   let seconds = Math.floor(milliseconds / 1000);
   let minutes = Math.floor(seconds / 60);
   let hours = Math.floor(minutes / 60);
@@ -75,4 +77,8 @@ export function convertMsToHM(milliseconds) {
   hours = hours % 24;
 
   return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+}
+export function getTwitterShareURL(time) {
+  const numOfquestions = ILoveWeb.questions.length;
+  return encodeURIComponent(`I ❤️ the Web platform and I just tested my knowledge at https://iloveweb.dev. I just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${time} time. What about you? Do you know your base?\n\n#iloveweb #web #platform`);
 }

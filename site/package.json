@@ -1,10 +1,10 @@
 {
   "name": "iloveweb",
   "description": "Node app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "main": "index.js",
-  "lastUpdate": "2022-10-12T20:32:42.757Z",
+  "lastUpdate": "2022-10-16T04:30:58.208Z",
   "scripts": {
     "dev": "node ./dev.js",
     "build": "node ./sdk/build.js"

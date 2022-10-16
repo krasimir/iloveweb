@@ -13,6 +13,8 @@ module.exports = function (req, res) {
     const file = req.queryString('q');
     if (fs.existsSync(`${PATH_TO_QUESTIONS}/${file}`)) {
       questions = [`/questions/${file}`]
+    } else {
+      console.log(`${PATH_TO_QUESTIONS}/${file} doesn't exists.`);
     }
   }
 
@@ -36,6 +38,7 @@ module.exports = function (req, res) {
           <meta name="robots" content="follow,index" />
           <meta name="apple-mobile-web-app-title" content="${details.title}" />
           <meta name="application-name" content="${details.title}" />
+          <link rel="icon" href="/imgs/heart.svg" type="image/svg+xml">
 
           <title>${details.title}</title>
           <meta name="description" content="${details.description}">
@@ -53,7 +56,6 @@ module.exports = function (req, res) {
           <div id="app"></div>
           <script>const QUESTIONS = ${JSON.stringify(questions)}</script>
           <script>${JS}</script>
-          <script async src=""></script>
           <iframe id="exerciseFrame"></iframe>
         </body>
       </html>
