@@ -80,6 +80,11 @@ const ILoveWeb = {
 
 window.ILoveWeb = ILoveWeb;
 
+window.html2CodeText = html2CodeText = ILoveWeb.html2CodeText;
+window.matchSelectorToHTML = matchSelectorToHTML = ILoveWeb.matchSelectorToHTML;
+window.walkHTML = walkHTML = ILoveWeb.walkHTML;
+window.calculateSpecificity = calculateSpecificity = ILoveWeb.calculateSpecificity;
+
 export default ILoveWeb;
 
 function validateHTML(code) {

@@ -16,7 +16,7 @@ ILoveWeb.load({
         tree.value.forEach(({ type, selectors, declarations }) => {
           const isThereColor = !!declarations.color;
           selectors.forEach((selector) => {
-            const element = ILoveWeb.matchSelectorToHTML(selector, CSS_SELECTORS_1_HTML);
+            const element = window.matchSelectorToHTML(selector, CSS_SELECTORS_1_HTML);
             if (!!element && element.innerText === 'B' && isThereColor) {
               success = true;
             }

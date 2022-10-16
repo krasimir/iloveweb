@@ -1,10 +1,10 @@
 {
   "name": "iloveweb",
   "description": "Node app",
-  "version": "0.0.5",
+  "version": "0.0.13",
   "private": true,
   "main": "index.js",
-  "lastUpdate": "2022-10-16T05:00:03.132Z",
+  "lastUpdate": "2022-10-16T06:06:01.992Z",
   "scripts": {
     "dev": "node ./dev.js",
     "build": "node ./sdk/build.js"
@@ -17,12 +17,13 @@
     "chalk": "4.1.2",
     "chokidar": "3.5.2",
     "clean-css": "5.2.2",
-    "compression": "^1.7.4",
+    "compression": "1.7.4",
     "cssbun": "1.2.0",
     "esbuild": "0.14.28",
     "express": "4.17.1",
     "lodash": "4.17.21",
     "node-fetch": "2",
-    "sanitize": "^2.1.2"
+    "sanitize": "2.1.2",
+    "uglify-js": "3.17.3"
   }
 }

@@ -4,15 +4,14 @@ const CSS = fs.readFileSync(__dirname + '/../../public/css/styles.css').toString
 const JS = fs.readFileSync(__dirname + '/../../public/js/app.js').toString('utf8');
 const PATH_TO_QUESTIONS = `${__dirname}/../../public/questions`;
 
-let questions = fs.readdirSync(PATH_TO_QUESTIONS).map(file => `/questions/${file}`);
-
 module.exports = function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-
+  
+  let questionsFile = '/questions/__all__.js';
   if (req.queryString('q')) {
     const file = req.queryString('q');
     if (fs.existsSync(`${PATH_TO_QUESTIONS}/${file}`)) {
-      questions = [`/questions/${file}`]
+      questionsFile = `/questions/${file}`
     } else {
       console.log(`${PATH_TO_QUESTIONS}/${file} doesn't exists.`);
     }
@@ -54,7 +53,7 @@ module.exports = function (req, res) {
         </head>
         <body>
           <div id="app"></div>
-          <script>const QUESTIONS = ${JSON.stringify(questions)}</script>
+          <script>const QUESTIONS_FILE = "${questionsFile}";</script>
           <script>${JS}</script>
           <iframe id="exerciseFrame"></iframe>
         </body>
