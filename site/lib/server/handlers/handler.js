@@ -19,10 +19,10 @@ module.exports = function (req, res) {
   }
 
   const details = {
-    title: 'I ❤️ Web',
-    description: 'I ❤️ Web',
+    title: 'I love the Web platform',
+    description: 'Test your knowledge on the fundamentals in Web - HTML, CSS and JavaScript.',
     url: 'https://iloveweb.dev',
-    ogImage: ''
+    ogImage: '/imgs/ogimage.png'
   }
 
   res.send(

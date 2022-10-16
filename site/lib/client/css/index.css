@@ -87,6 +87,11 @@ h1, h2, h3, p, ul, li {
   grid-template-columns: 1fr 1fr;
   gap: 0;
 }
+@media all and (max-width: 1000px) {
+  .editor {
+    display: block;
+  }
+}
 .editor .question {
   padding: 2em;
   background: var(--bg-color-lighter-2);
@@ -117,7 +122,6 @@ h1, h2, h3, p, ul, li {
   overflow: hidden;
   padding: 1em;
   overflow-y: auto;
-  scrollbar-color: red var(--bg-color-lighter);
 }
 .area .console {
   position: absolute;
@@ -125,6 +129,9 @@ h1, h2, h3, p, ul, li {
   font-size: 0.6em;
   line-height: 1.2em;
   color: var(--text-color-darker);
+  max-height: 100px;
+  overflow: hidden;
+  padding: 0 1em;
 }
 #exerciseFrame {
   position: absolute;
@@ -139,6 +146,16 @@ h1, h2, h3, p, ul, li {
   padding-top: 2em;
   padding-bottom: 6em;
   position: relative;
+}
+@media all and (max-width: 900px) {
+  .game-progress {
+    max-width: 300px;
+  }
+}
+@media all and (max-width: 600px) {
+  .game-progress {
+    max-width: 100px;
+  }
 }
 .game-progress .animation {
   position: relative;
@@ -178,4 +195,9 @@ h1, h2, h3, p, ul, li {
   top: 4.5em;
   right: -1.2em;
   font-size: 1.4em;
+}
+footer {
+  font-size: 0.7em;
+  opacity: 0;
+  padding: 10em 2em 2em 2em;
 }

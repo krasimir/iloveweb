@@ -42,12 +42,12 @@ async function loadDependencies(deps) {
           window.get = _.get;
         }
         ILoveWeb.initQuestions();
-        showEditor();
+        showContent();
       }
     }
   )
 }
-export function showEditor() {
+export function showContent() {
   render({
     content: `
       <div class="game-progress mxauto">
@@ -66,6 +66,9 @@ export function showEditor() {
           <div class="console"></div>
         </section>
       </div>
+      <footer class="tac">
+        Build by <a href="https://twitter.com/KrasimirTsonev" target="_blank">@krasimirtsonev</a>. Contribute with more questions <a href="https://github.com/krasimir/iloveweb" target="_blank">here</a>.
+      </footer>
     `,
     onRender() {
       let questionIdx = 0;
@@ -176,12 +179,17 @@ export function showEditor() {
         line.style.width = `${percentage}%`;
         player.setSpeed(0.2 + (questionIdx / ILoveWeb.questions.length));
       }
+      // ------------------------------------------------------------------------------ footer
+      function showFooter() {
+        gsap.fromTo($('footer'), { y: '100px', opacity: 0 }, { y: 0, opacity: 0.4, delay: 0.3, duration: 0.8 });
+      }
 
       showQuestion();
       showTextarea();
       initProgresS();
       updateProgress();
       setTimer();
+      showFooter();
     }
   });
 }

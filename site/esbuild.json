@@ -14,7 +14,7 @@
       ]
     },
     "lib/client/js/index.js": {
-      "bytes": 5999,
+      "bytes": 6513,
       "imports": [
         {
           "path": "lib/client/js/api.js",
@@ -40,10 +40,10 @@
           "bytesInOutput": 1316
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 3430
+          "bytesInOutput": 3778
         }
       },
-      "bytes": 6204
+      "bytes": 6552
     }
   }
 }
