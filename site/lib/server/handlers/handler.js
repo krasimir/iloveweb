@@ -3,6 +3,7 @@ const fs = require('fs');
 const CSS = fs.readFileSync(__dirname + '/../../public/css/styles.css').toString('utf8');
 const JS = fs.readFileSync(__dirname + '/../../public/js/app.js').toString('utf8');
 const PATH_TO_QUESTIONS = `${__dirname}/../../public/questions`;
+const pkg = require('../../../package.json');
 
 module.exports = function (req, res) {
   res.setHeader('Content-Type', 'text/html');
@@ -53,7 +54,10 @@ module.exports = function (req, res) {
         </head>
         <body>
           <div id="app"></div>
-          <script>const QUESTIONS_FILE = "${questionsFile}";</script>
+          <script>
+            const QUESTIONS_FILE = "${questionsFile}";
+            const VERSION = "${pkg.version}";
+          </script>
           <script>${JS}</script>
           <iframe id="exerciseFrame"></iframe>
         </body>

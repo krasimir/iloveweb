@@ -48,10 +48,10 @@ export async function loadFile(file) {
     if (file.match(/\.js$/)) {
       const script = document.createElement('script');
       script.onload = done;
-      script.src = file;
+      script.src = file + `?v=${VERSION}`;
       document.head.appendChild(script);
     } else {
-      fetch(file).then(done);
+      fetch(file + `?v=${VERSION}`).then(done);
     }
   });
 }
@@ -80,5 +80,5 @@ export function convertMsToHM(milliseconds) {
 }
 export function getTwitterShareURL(time) {
   const numOfquestions = ILoveWeb.questions.length;
-  return encodeURIComponent(`I ❤️ the Web platform and I just tested my knowledge at https://iloveweb.dev. I just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${time} time. What about you? Do you know your base?\n\n#iloveweb #web #platform`);
+  return encodeURIComponent(`I ❤️ the Web platform and I tested my knowledge at https://iloveweb.dev. I just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${time} time. What about you? Do you know your base?\n\n#iloveweb #web #platform`);
 }

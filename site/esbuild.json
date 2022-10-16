@@ -5,7 +5,7 @@
       "imports": []
     },
     "lib/client/js/utils/helpers.js": {
-      "bytes": 2732,
+      "bytes": 2763,
       "imports": [
         {
           "path": "lib/client/js/api.js",
@@ -14,7 +14,7 @@
       ]
     },
     "lib/client/js/index.js": {
-      "bytes": 6582,
+      "bytes": 6856,
       "imports": [
         {
           "path": "lib/client/js/api.js",
@@ -37,13 +37,13 @@
           "bytesInOutput": 1674
         },
         "lib/client/js/utils/helpers.js": {
-          "bytesInOutput": 1316
+          "bytesInOutput": 1343
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 3826
+          "bytesInOutput": 3946
         }
       },
-      "bytes": 6828
+      "bytes": 6975
     }
   }
 }

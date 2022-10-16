@@ -165,7 +165,7 @@ h1, h2, h3, p, ul, li {
 }
 .game-progress .animation .timer {
   position: absolute;
-  left: 31px;
+  left: 4px;
   top: 106px;
   font-size: 0.8em;
   color: var(--text-color-darker);

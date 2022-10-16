@@ -98,6 +98,7 @@ export function showContent() {
         if (player) { player.stop(); }
         clearInterval(timeInterval);
         editorEl.style.display = 'block';
+        const numOfquestions = ILoveWeb.questions.length;
         render({
           container: editorEl,
           content: `
@@ -105,7 +106,7 @@ export function showContent() {
               <h1 class="tac">Congratulations!</h1>
               <small class="block tac">You really ❤️ the web.</small>
               <p class="tac mt1">
-                Your result: ${convertMsToHM(time)}
+                You just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${convertMsToHM(time)} time.
                 <br /><br />
                 <a href="https://twitter.com/intent/tweet?text=${getTwitterShareURL(convertMsToHM(time))}">
                   <img src="/imgs/twitter.svg" width="20"/>
@@ -170,14 +171,16 @@ export function showContent() {
       function setTimer() {
         timeInterval = setInterval(() => {
           time += 1000;
-          timeEl.innerHTML = convertMsToHM(time);
+          timeEl.innerHTML = `${questionIdx}/${ILoveWeb.questions.length} · ${convertMsToHM(time)}`;
         }, 1000);
       }
       function updateProgress() {
         const line = $('.line-progress');
+        const speedRange = [0.2, 8]
         const percentage = Math.ceil(questionIdx / ILoveWeb.questions.length * 100);
+        const speed = speedRange[0] + ((percentage/100) * (speedRange[1] - speedRange[0]));
         line.style.width = `${percentage}%`;
-        player.setSpeed(0.2 + (questionIdx / ILoveWeb.questions.length));
+        player.setSpeed(speed);
       }
       // ------------------------------------------------------------------------------ footer
       function showFooter() {
