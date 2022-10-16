@@ -60,6 +60,13 @@ module.exports = function (req, res) {
           </script>
           <script>${JS}</script>
           <iframe id="exerciseFrame"></iframe>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3VP7RZZ74"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D3VP7RZZ74');
+          </script>
         </body>
       </html>
     `

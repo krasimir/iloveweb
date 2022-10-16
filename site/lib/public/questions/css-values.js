@@ -8,7 +8,7 @@ ILoveWeb.load({
   doc: '',
   tasks: [
     {
-      text: `Write CSS that sets the font size of the &lt;span> element to be 10px greater than the font size of the paragraph.`,
+      text: `Write CSS that sets the font size of the &lt;span> element to be 10px greater than the font size of the paragraph.${html2CodeText(CSS_VALUES_1_HTML)}`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;
@@ -26,7 +26,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: `Set the color of the paragraph to be solid green with 0.5% transparency.`,
+      text: `Set the color of a paragraph to be solid green with 0.5% transparency.`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;

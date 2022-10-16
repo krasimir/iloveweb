@@ -9,7 +9,7 @@ ILoveWeb.load({
   lang: 'css',
   tasks: [
     {
-      text: `Set a color of the second &lt;span> element in the following HTML snippet:${ILoveWeb.html2CodeText(CSS_SELECTORS_1_HTML)}`,
+      text: `Set a color of the second &lt;span> element in the following HTML snippet:${html2CodeText(CSS_SELECTORS_1_HTML)}`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;

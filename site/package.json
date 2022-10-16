@@ -1,13 +1,14 @@
 {
   "name": "iloveweb",
   "description": "Node app",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "private": true,
   "main": "index.js",
-  "lastUpdate": "2022-10-16T07:00:46.063Z",
+  "lastUpdate": "2022-10-16T20:20:37.670Z",
   "scripts": {
     "dev": "node ./dev.js",
-    "build": "node ./sdk/build.js"
+    "build": "node ./sdk/build.js",
+    "stats": "node ./sdk/stats.js"
   },
   "engines": {
     "node": ">= 12.0.0"
