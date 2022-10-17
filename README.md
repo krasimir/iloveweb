@@ -18,3 +18,4 @@ Check out the questions that already exists in [./site/lib/public/questions](./s
 Here're some tips:
 
 * If you want to see a single question in a file add `only: true` to it and load that specific file. For example http://localhost:8080/?q=html.js
+* If you need to escape some code so you can add it to the text of the question go [here](https://daskalo.dev/escape).
