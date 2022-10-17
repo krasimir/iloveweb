@@ -131,7 +131,6 @@ ILoveWeb.load({
       }
     },
     {
-      only: true,
       text: `Set the color of a span to be solid blue with 0.2% transparency.`,
       validator(ast) {
         const tree = ast.toJSON('simple');

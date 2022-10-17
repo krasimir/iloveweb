@@ -22,6 +22,12 @@ fs.readdirSync(QUESTIONS_PATH).forEach(qFile => {
     allQuesitons.push(fs.readFileSync(`${QUESTIONS_PATH}/${qFile}`).toString('utf8'));
   }
 });
+
+// checking for "only: true"
+if (allQuesitons.find(qText => qText.match(/only:/))) {
+  throw new Error('Ops! There is "only: true" somewhere.');
+}
+
 fs.writeFileSync(`${QUESTIONS_PATH}/__all__.js`, UglifyJS.minify(allQuesitons.join('\n')).code);
 console.log(`${allQuesitons.length} question files merged into __all__.js`);
 
