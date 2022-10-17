@@ -17,12 +17,13 @@ module.exports = function (req, res) {
       console.log(`${PATH_TO_QUESTIONS}/${file} doesn't exists.`);
     }
   }
+  console.log(questionsFile);
 
   const details = {
     title: 'I love the Web platform',
     description: 'Test your knowledge on the fundamentals in Web - HTML, CSS and JavaScript.',
     url: 'https://iloveweb.dev',
-    ogImage: '/imgs/ogimage.png'
+    ogImage: 'https://iloveweb.dev/imgs/ogimage.png'
   }
 
   res.send(
@@ -47,9 +48,12 @@ module.exports = function (req, res) {
           <meta property="og:type" content="website">
           <meta property="og:title" content="${details.title}">
           <meta property="og:description" content="${details.description}">
-          <meta property="og:image" content="${details.ogImage}">
+          <meta property="og:image" content="${details.ogImage}"> 
           <meta name="twitter:card" content="summary_large_image">
-          <meta property="twitter:domain" content="iloveweb.dev">        
+          <meta name="twitter:creator" content="@krasimirtsonev">
+          <meta name="twitter:title" content="details.title">
+          <meta name="twitter:description" content="details.description">
+          <meta name="twitter:image" content="https://iloveweb.dev/imgs/ogimage.png">   
           <style>${CSS}</style>
         </head>
         <body>

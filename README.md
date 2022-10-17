@@ -14,3 +14,7 @@ That's a small project that tests the knowledge on the Web platform. Go to [http
 4. Check if there is a file that you can contribute to or create a new one. Add your questions. (The only one that you should not touch is `__all__.js`)
 
 Check out the questions that already exists in [./site/lib/public/questions](./site/lib/public/questions). You'll get an idea how to write a new one.
+
+Here're some tips:
+
+* If you want to see a single question in a file add `only: true` to it.

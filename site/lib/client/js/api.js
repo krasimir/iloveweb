@@ -21,6 +21,11 @@ const ILoveWeb = {
     }
     // picking the first X
     this.questions = this.questions.slice(0, NUM_OF_QUESTIONS);
+    // checking for `only: true`
+    if (this.questions.find(q => q.question.only === true)) {
+      this.questions = this.questions.filter(q => q.question.only);
+    }
+    console.log(`Questions in total: ${this.questions.length}`);
   },
   check(code, idx, onSuccess, onLog) {
     const { lang, question } = this.questions[idx];

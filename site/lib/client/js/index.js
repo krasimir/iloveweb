@@ -199,6 +199,5 @@ export function showContent() {
 
 window.addEventListener('load', () => {
   const deps = [...APP_DEPS, QUESTIONS_FILE];
-  console.log(JSON.stringify(deps, null, 2));
   loadDependencies(deps);
 });
