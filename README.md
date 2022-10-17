@@ -17,4 +17,4 @@ Check out the questions that already exists in [./site/lib/public/questions](./s
 
 Here're some tips:
 
-* If you want to see a single question in a file add `only: true` to it.
+* If you want to see a single question in a file add `only: true` to it and load that specific file. For example http://localhost:8080/?q=html.js

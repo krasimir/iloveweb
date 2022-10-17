@@ -17,7 +17,7 @@ module.exports = function (req, res) {
       console.log(`${PATH_TO_QUESTIONS}/${file} doesn't exists.`);
     }
   }
-  console.log(questionsFile);
+  // console.log(questionsFile);
 
   const details = {
     title: 'I love the Web platform',
