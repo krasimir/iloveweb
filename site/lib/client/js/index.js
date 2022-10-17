@@ -89,7 +89,10 @@ export function showContent() {
           return;
         }
         render({
-          content: question.question.text,
+          content: `
+            <div class="z1 lang">${question.lang.toUpperCase()}</div>
+            <div class="z2">${question.question.text}</div>
+          `,
           container: questionEl
         });
         gsap.fromTo(questionEl, { y: '100px', opacity: 0 }, { y: 0, opacity: 1 });

@@ -77,7 +77,7 @@ ILoveWeb.load({
         return typeof f().innerHTML !== 'undefined';
       }
     },
-     {
+    {
       text: `Think that you have a global object "API" and a global function "iloveweb".<code>const&nbsp;API&nbsp;=&nbsp;{\n&nbsp;&nbsp;hey()&nbsp;{&nbsp;return&nbsp;'Hello!';&nbsp;}\n}\nfunction&nbsp;iloveweb()&nbsp;{\n&nbsp;&nbsp;return&nbsp;this.hey();\n}</code>Call the function so it runs with no error.`,
       validator(code) {
         const f = new Function(`
@@ -88,6 +88,34 @@ ILoveWeb.load({
             return this.hey();
           }
           return ${code} === 'Hello!';
+        `);
+        return f();
+      }
+    },
+    {
+      text: `There is an item in the local storage with key "data". Read it from there and print it to the console.`,
+      validator(code) {
+        const f = new Function(`
+          let success = false;
+          const localStorage = {
+            getItem(key) {
+              if (key === "data") {
+                return 'iloveweb';
+              }
+            },
+            setItem() {}
+          }
+          const console = {
+            log(value) {
+              if (value === 'iloveweb') {
+                success = true;
+              }
+            },
+            warn(){},
+            error(){}
+          }
+          ${code}
+          return success;
         `);
         return f();
       }

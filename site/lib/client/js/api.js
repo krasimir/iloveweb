@@ -26,7 +26,6 @@ const ILoveWeb = {
     // picking the first X
     this.questions = this.questions.slice(0, NUM_OF_QUESTIONS);
     console.log(`Questions in total: ${this.questions.length}`);
-    this.questions.forEach(q => console.log(q.question.text));
   },
   check(code, idx, onSuccess, onLog) {
     const { lang, question } = this.questions[idx];

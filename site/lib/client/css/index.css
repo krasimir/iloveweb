@@ -59,6 +59,8 @@ h1, h2, h3, p, ul, li {
 .op0 { opacity: 0; }
 .tac { text-align: center; }
 .block { display: block; }
+.z1 { z-index: 1; }
+.z2 { z-index: 2; }
 
 #app {
   position: relative;
@@ -96,6 +98,14 @@ h1, h2, h3, p, ul, li {
   padding: 2em;
   background: var(--bg-color-lighter-2);
   opacity: 0;
+  position: relative;
+}
+.question .lang {
+  position: absolute;
+  bottom: 1em;
+  left: 3em;
+  font-size: 0.6em;
+  color: var(--text-color-light);
 }
 .question code {
   display: block;

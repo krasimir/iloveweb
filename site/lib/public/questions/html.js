@@ -2,7 +2,7 @@ ILoveWeb.load({
   lang: 'html',
   tasks: [
     {
-      text: 'Create a HTML structure with nested elements.',
+      text: 'Create HTML structure with nested elements.',
       validator(tree) {
         let success = false;
         get(tree, 'child', []).forEach(el => {
@@ -42,11 +42,27 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'Create a unordered list.',
+      text: 'Create an unordered list.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
           if (el.tag === 'ul') {
+            window.walkHTML(el, (bodyChild) => {
+              if (bodyChild.tag === 'li') {
+                success = true;
+              }
+            });
+          }
+        });
+        return success;
+      }
+    },
+    {
+      text: 'Create an ordered list.',
+      validator(tree) {
+        let success = false;
+        window.walkHTML(tree, (el) => {
+          if (el.tag === 'ol') {
             window.walkHTML(el, (bodyChild) => {
               if (bodyChild.tag === 'li') {
                 success = true;
@@ -84,7 +100,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'Combine correctly &lt;span> and &lt;p> elements, so the inline element to be nested inside the block element.',
+      text: 'Combine correctly &lt;span> and &lt;p> element, so the inline element to be nested inside the block element.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -115,7 +131,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'Add a video file to your HTML page. The filename is "lesson.mp4".',
+      text: 'Add a video to your HTML page. The filename is "lesson.mp4".',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -155,7 +171,19 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'Create HTML input elements that answer on one-of-many question.',
+      text: 'And a HTML element that allows the user to type a password.',
+      validator(tree) {
+        let success = false;
+        window.walkHTML(tree, (el) => {
+          if (el.tag === 'input' && el.attr && el.attr.type === "password") {
+            success = true;
+          }
+        });
+        return success;
+      }
+    },
+    {
+      text: 'Create HTML input elements that answer a one-of-many question.',
       validator(tree) {
         let success = false;
         let groups = {};
@@ -189,7 +217,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'Let\'s say that we have a page with header and navigation containing 3 &lt;a> tags. Write a semantically correct HTML for that structure.',
+      text: 'Let\'s say that we have a page with header and navigation containing 3 &lt;a> tags. Write a semantically correct HTML.',
       validator(tree) {
         let numOfLinks = 0;
         window.walkHTML(tree, (el) => {
@@ -206,8 +234,7 @@ ILoveWeb.load({
           }
         });
         return numOfLinks === 3;
-      },
-      answer: '<header>\n  <nav>\n    <a href="/a">a</a>\n    <a href="/b">b</a>\n    <a href="/c">c</a>\n  </nav>\n</header>'
+      }
     },
     {
       text: 'Create HTML page that has a title "iloveweb".',
@@ -240,17 +267,90 @@ ILoveWeb.load({
       }
     },
     {
-      only: true,
+      text: 'Set the encoding of a HTML page to "UTF-8".',
+      validator(tree) {
+        let metaExists = false;
+        window.walkHTML(tree, (el) => {
+          if (el.tag === 'meta' && el.attr && el.attr.charset === 'UTF-8') {
+            metaExists = true;
+          }
+        });
+        return metaExists;
+      }
+    },
+    {
       text: 'Set an inline style of a &lt;section> element.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
           if (el.tag === 'section' && _.get(el, 'attr.style', '').length > 1) {
-            console.log('------');
             success = true;
           }
         });
         return success;
+      }
+    },
+    {
+      text: 'Write an iframe that loads "banner.html" in 300x300 area.',
+      validator(tree) {
+        let success = false;
+        window.walkHTML(tree, (el) => {
+          if (
+            el.tag === 'iframe' &&
+            _.get(el, 'attr.src', '').match(/banner\.html/) &&
+            _.get(el, 'attr.width', '') === '300' &&
+            _.get(el, 'attr.height', '') === '300'
+          ) {
+            success = true;
+          }
+        });
+        return success;
+      }
+    },
+    {
+      text: 'Write code that results in 3 HTML tags and 1 HTML elements.',
+      validator(tree) {
+        const oneTagElements = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+        let nOfTags = 0;
+        let nOfEls = 0;
+        window.walkHTML(tree, (el) => {
+          if (el.node === 'element') {
+            if (oneTagElements.includes(el.tag)) {
+              nOfTags += 1;
+            } else {
+              nOfTags += 2;
+              nOfEls += 1;
+            }
+          }
+        });
+        const result = nOfTags === 3 && nOfEls === 1;
+        if (result) {
+          return true;
+        }
+        throw new Error(`At the moment you have - \ntags: ${nOfTags}, elements: ${nOfEls}`);
+      }
+    },
+    {
+      text: 'Write code that results in 4 HTML tags and 2 HTML elements.',
+      validator(tree) {
+        const oneTagElements = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+        let nOfTags = 0;
+        let nOfEls = 0;
+        window.walkHTML(tree, (el) => {
+          if (el.node === 'element') {
+            if (oneTagElements.includes(el.tag)) {
+              nOfTags += 1;
+            } else {
+              nOfTags += 2;
+              nOfEls += 1;
+            }
+          }
+        });
+        let result = nOfTags === 4 && nOfEls === 2;
+        if (result) {
+          return true;
+        }
+        throw new Error(`At the moment you have: tags(${nOfTags}), elements(${nOfEls})`);
       }
     }
   ]

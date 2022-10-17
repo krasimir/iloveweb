@@ -62,8 +62,37 @@ ILoveWeb.load({
           });
         });
         return success;
-      },
-      answer: '#about .a .b .c {\n  font-size: 10px;\n}'
+      }
+    },
+    {
+      text: `Write a valid CSS selector with specificity equal to 021.`,
+      validator(ast) {
+        const tree = ast.toJSON('simple');
+        let success = false;
+        tree.value.forEach(({ type, selectors, declarations }) => {
+          selectors.forEach((selector) => {
+            if (calculateSpecificity(selector) === 21) {
+              success = true;
+            }
+          });
+        });
+        return success;
+      }
+    },
+    {
+      text: `Write a valid CSS selector with specificity equal to 201.`,
+      validator(ast) {
+        const tree = ast.toJSON('simple');
+        let success = false;
+        tree.value.forEach(({ type, selectors, declarations }) => {
+          selectors.forEach((selector) => {
+            if (calculateSpecificity(selector) === 201) {
+              success = true;
+            }
+          });
+        });
+        return success;
+      }
     },
     {
       text: `Write CSS that sets the font size of the &lt;span> element to be 10px greater than the font size of the paragraph.${html2CodeText(CSS_VALUES_1_HTML)}`,
@@ -92,8 +121,26 @@ ILoveWeb.load({
           selectors.forEach((selector) => {
             const element = matchSelectorToHTML(selector, '<p>text</p>');
             if (!!element && element.innerText === 'text') {
-              console.log(declarations);
               if (declarations['color'] === 'rgba(0,255,0,0.5)') {
+                success = true;
+              }
+            }
+          });
+        });
+        return success;
+      }
+    },
+    {
+      only: true,
+      text: `Set the color of a span to be solid blue with 0.2% transparency.`,
+      validator(ast) {
+        const tree = ast.toJSON('simple');
+        let success = false;
+        tree.value.forEach(({ type, selectors, declarations }) => {
+          selectors.forEach((selector) => {
+            const element = matchSelectorToHTML(selector, '<span>text</span>');
+            if (!!element && element.innerText === 'text') {
+              if (declarations['color'] === 'rgba(0,0,255,0.2)') {
                 success = true;
               }
             }
