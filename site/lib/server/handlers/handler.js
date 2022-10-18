@@ -51,8 +51,8 @@ module.exports = function (req, res) {
           <meta property="og:image" content="${details.ogImage}"> 
           <meta name="twitter:card" content="summary_large_image">
           <meta name="twitter:creator" content="@krasimirtsonev">
-          <meta name="twitter:title" content="details.title">
-          <meta name="twitter:description" content="details.description">
+          <meta name="twitter:title" content="${details.title}">
+          <meta name="twitter:description" content="${details.description}">
           <meta name="twitter:image" content="https://iloveweb.dev/imgs/ogimage.png">   
           <style>${CSS}</style>
         </head>

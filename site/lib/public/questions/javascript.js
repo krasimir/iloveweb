@@ -45,7 +45,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'Write a JavaScript function called "calculate" that receives the following array:<code>[10, 2, 89]</code>Your function should calculate the sum of all the numbers in the passed array.',
+      text: 'Write a JavaScript function called "calculate". It will receive the array:<code>[10, 2, 89]</code>Your function should calculate the sum of all the numbers and return it.',
       validator(code) {
         const f = new Function(`
           ${code};
@@ -120,5 +120,47 @@ ILoveWeb.load({
         return f();
       }
     },
+    {
+      text: `Write code that will be placed on the "!!!" marker. The result of the function "getFullname" should be "John Doe".<code>const&nbsp;User&nbsp;=&nbsp;{\n&nbsp;&nbsp;firstName:&nbsp;'John',\n&nbsp;&nbsp;lastName:&nbsp;'Doe'\n}\nfunction&nbsp;getFullname(userData)&nbsp;{\n&nbsp;&nbsp;!!!\n&nbsp;&nbsp;return&nbsp;firstName&nbsp;+&nbsp;'&nbsp;'&nbsp;+&nbsp;lastName;\n}\ngetFullName(User);</code>`,
+      validator(code) {
+        const f = new Function(`
+          const User = {
+            firstName: 'John',
+            lastName: 'Doe'
+          }
+          function getFullname(userData) {
+            ${code}
+            return firstName + ' ' + lastName;
+          }
+          return getFullname(User);
+        `);
+        return f() === 'John Doe';
+      }
+    },
+    {
+      text: `Write some code that will replace "{your code here}" text so the result of this script is "John Doe is 37 years old".<code>async&nbsp;function&nbsp;loadName()&nbsp;{\n&nbsp;&nbsp;return&nbsp;'John&nbsp;Doe';\n}\nasync&nbsp;function&nbsp;loadAge()&nbsp;{\n&nbsp;&nbsp;return&nbsp;37\n}\n{your&nbsp;code&nbsp;here}.then(([name,&nbsp;age])&nbsp;=>&nbsp;{\n&nbsp;&nbsp;console.log(name&nbsp;+&nbsp;'&nbsp;is&nbsp;'&nbsp;+&nbsp;age&nbsp;+&nbsp;'&nbsp;years&nbsp;old');\n});</code>`,
+      validator(code) {
+        const f = new Function(`
+const logic = (data) => ({
+  then: (cb) => cb(data)
+});
+const Promise = { all: logic, allSettled: logic }
+function loadName() {
+  return 'John Doe';
+}
+function loadAge() {
+  return 37
+}
+let res;
+try {
+  res = ${code}.then(([name, age]) => {
+    return name + ' is ' + age + ' years old';
+  });
+} catch(err) {}
+return res;
+        `);
+        return f() === 'John Doe is 37 years old';
+      }
+    }
   ]
 });
