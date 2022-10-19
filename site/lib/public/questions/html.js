@@ -147,7 +147,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'And a HTML element that allows the user to pick a color.',
+      text: 'Add a HTML element that allows the user to pick a color.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -159,7 +159,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'And a HTML element that allows the user to pick a date.',
+      text: 'Add a HTML element that allows the user to pick a date.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
@@ -171,7 +171,7 @@ ILoveWeb.load({
       }
     },
     {
-      text: 'And a HTML element that allows the user to type a password.',
+      text: 'Add a HTML element that allows the user to type a password.',
       validator(tree) {
         let success = false;
         window.walkHTML(tree, (el) => {
