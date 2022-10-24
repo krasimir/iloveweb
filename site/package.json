@@ -1,14 +1,15 @@
 {
   "name": "iloveweb",
   "description": "Node app",
-  "version": "1.0.22",
+  "version": "2.0.9",
   "private": true,
   "main": "index.js",
-  "lastUpdate": "2022-10-24T05:24:06.823Z",
+  "lastUpdate": "2022-10-24T16:02:20.187Z",
   "scripts": {
     "dev": "node ./dev.js",
     "build": "node ./sdk/build.js",
-    "stats": "node ./sdk/stats.js"
+    "stats": "node ./sdk/stats.js",
+    "generate-og": "node ./sdk/generate-og.js"
   },
   "engines": {
     "node": ">= 12.0.0"
@@ -26,6 +27,10 @@
     "nanoid": "3.3.4",
     "node-fetch": "2",
     "sanitize": "2.1.2",
-    "uglify-js": "3.17.3"
+    "uglify-js": "3.17.3",
+    "puppeteer": "13.0.1",
+    "imagemin": "7.0.1",
+    "imagemin-jpegtran": "7.0.0",
+    "imagemin-pngquant": "9.0.2"
   }
 }

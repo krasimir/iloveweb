@@ -1,25 +1,7 @@
 const fs = require('fs');
+const { getAllQuestions }=require('./utils');
 
-const QUESTIONS_DIR = __dirname + '/../lib/public/questions';
-const getNumOfQuestions = (code) => `
-  let questions = [];
-  const html2CodeText = () => {};
-  const ILoveWeb = {
-    load({ tasks }) {
-      questions = questions.concat(tasks);
-    }
-  }
-  ${code};
-  return questions;
-`
-
-let questions = [];
-fs.readdirSync(QUESTIONS_DIR).forEach(file => {
-  if (!file.match(/__all__/)) {
-    const code = fs.readFileSync(`${QUESTIONS_DIR}/${file}`).toString('utf-8');
-    questions = questions.concat((new Function(getNumOfQuestions(code)))());
-  }
-});
+const questions = getAllQuestions();
 
 // checking for duplicated ids
 let duplicated = [];

@@ -6,4 +6,5 @@ COPY yarn.lock ./
 
 RUN yarn install
 COPY lib ./lib
+COPY sdk ./sdk
 CMD [ "node", "lib/server/index.js" ]

@@ -86,6 +86,32 @@ function exitHandler(err) {
   }
   exitCallbacks.forEach((c) => c());
 }
+function getAllQuestions() {
+  const QUESTIONS_DIR = __dirname + '/../lib/public/questions';
+  const getQuestion = (code) => `
+    let questions = [];
+    function html2CodeText(html) {
+      return '<code>' + html
+        .replace(/</g, '&lt;')
+        .replace(/ /g, '&nbsp;') + '</code>';
+    }
+    const ILoveWeb = {
+      load({ tasks }) {
+        questions = questions.concat(tasks);
+      }
+    }
+    ${code};
+    return questions;
+  `;
+  let questions = [];
+  fs.readdirSync(QUESTIONS_DIR).forEach(file => {
+    if (!file.match(/__all__/)) {
+      const code = fs.readFileSync(`${QUESTIONS_DIR}/${file}`).toString('utf-8');
+      questions = questions.concat((new Function(getQuestion(code)))());
+    }
+  });
+  return questions;
+}
 
 // do something when app is closing
 process.on("exit", exitHandler);
@@ -101,5 +127,6 @@ module.exports = {
   runServer,
   inputCSS,
   compileCSS,
-  compileJS
+  compileJS,
+  getAllQuestions
 }

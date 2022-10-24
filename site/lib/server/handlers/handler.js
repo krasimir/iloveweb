@@ -7,11 +7,16 @@ const pkg = require('../../../package.json');
 module.exports = function (req, res) {
   res.setHeader('Content-Type', 'text/html');
 
+  let ogImage = 'https://iloveweb.dev/imgs/ogimage.png';
+  if (req.query.q) {
+    ogImage = `https://iloveweb.dev/imgs/question_${req.query.q}.png`
+  }
+
   const details = {
     title: 'I love the Web platform',
     description: 'Test your knowledge on the fundamentals in Web - HTML, CSS and JavaScript.',
     url: 'https://iloveweb.dev',
-    ogImage: 'https://iloveweb.dev/imgs/ogimage.png'
+    ogImage
   }
 
   res.send(
@@ -41,7 +46,7 @@ module.exports = function (req, res) {
           <meta name="twitter:creator" content="@krasimirtsonev">
           <meta name="twitter:title" content="${details.title}">
           <meta name="twitter:description" content="${details.description}">
-          <meta name="twitter:image" content="https://iloveweb.dev/imgs/ogimage.png">   
+          <meta name="twitter:image" content="${details.ogImage}">   
           <style>${CSS}</style>
         </head>
         <body>
