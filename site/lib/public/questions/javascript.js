@@ -170,6 +170,22 @@ return res;
         `);
         return f() === 'John Doe is 37 years old';
       }
+    },
+    {
+      id: 'ZzlcExdIAr',
+      text: `Let's say that we have the following code:<code>function&nbsp;test()&nbsp;{\n&nbsp;&nbsp;return&nbsp;❤️&nbsp;===&nbsp;foo();\n&nbsp;&nbsp;function&nbsp;foo()&nbsp;{\n&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;42;\n&nbsp;&nbsp;}\n}</code>Replace the "❤️" icon with a value so the result of the "test" function is "true".`,
+      validator(code) {
+        const f = new Function(`
+function test() {
+  return ${code} === foo();
+  function foo() {
+    return 42;
+  }
+}
+          return test();
+        `);
+        return f() === true;
+      }
     }
   ]
 });

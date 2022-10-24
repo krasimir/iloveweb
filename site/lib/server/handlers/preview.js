@@ -5,10 +5,10 @@ const CSS = fs.readFileSync(__dirname + '/../../public/css/styles.css').toString
 const questions = getAllQuestions();
 
 module.exports = function (req, res) {
-  const question = questions.find(({ id }) => id === req.query.id);
+  const question = questions.find(({ id }) => id === req.query.q);
 
   if (!question) {
-    res.send(`Missing question with id ${req.query.id}.`);
+    res.send(`Missing question with id ${req.query.q}.`);
     return;
   }
 
@@ -54,6 +54,12 @@ module.exports = function (req, res) {
             }
             .preview > div {
               width: 100%;
+            }
+            .preview code {
+              width: 100%;
+              word-break: break-word;
+              font-size: 0.8em;
+              line-height: 1.2em;
             }
           </style>
         </head>

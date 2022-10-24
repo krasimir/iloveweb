@@ -12,7 +12,9 @@ const APP_DEPS = [
   'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js',
   '/imgs/Cycle_custom_icon.json',
-  '/questions/__all__.js'
+  '/questions/css.js',
+  '/questions/html.js',
+  '/questions/javascript.js'
 ];
 
 async function loadDependencies(deps, callback) {
@@ -98,6 +100,7 @@ function showContent() {
         if (player) { player.stop(); }
         clearInterval(timeInterval);
         editorEl.style.display = 'block';
+        timeEl ? timeEl.innerHTML = `${ILoveWeb.questions.length}/${ILoveWeb.questions.length} · ${convertMsToHM(time)}` : null;
         const numOfquestions = ILoveWeb.questions.length;
         const social = `
           <br /><br />
@@ -144,11 +147,11 @@ function showContent() {
           textareaEl.value,
           questionIdx,
           () => {
-            updateProgress();
             gsap.to(textareaEl, { backgroundColor: '#FF7E7E', color: '#000', duration: 0.1, onComplete: () => {
               gsap.to(textareaEl, { opacity: 0, delay: 0.1 });
               gsap.to(questionEl, { opacity: 0, delay: 0.1, onComplete: () => {
                 questionIdx += 1;
+                updateProgress();
                 if (!ILoveWeb.questions[questionIdx]) {
                   win();
                 } else {
@@ -188,6 +191,7 @@ function showContent() {
       }
       function setTimer() {
         if (ILoveWeb.mode === 'SINGLE') return;
+        clearInterval(timeInterval);
         timeInterval = setInterval(() => {
           time += 1000;
           timeEl.innerHTML = `${questionIdx}/${ILoveWeb.questions.length} · ${convertMsToHM(time)}`;
@@ -206,6 +210,11 @@ function showContent() {
       function showFooter() {
         gsap.fromTo($('footer'), { y: '100px', opacity: 0 }, { y: 0, opacity: 0.4, delay: 0.3, duration: 0.8 });
       }
+
+      // In case you want to test the final state.
+      // ILoveWeb.questions.forEach(({ lang, question }) => {
+      //   question.validator = () => true;
+      // })
 
       showQuestion();
       showTextarea();
