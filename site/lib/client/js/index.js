@@ -1,3 +1,4 @@
+import './utils/question-tooling';
 import ILoveWeb from './api';
 import { render, center, loadFile, $, convertMsToHM, getTwitterShareURL } from './utils/helpers';
 
@@ -10,10 +11,11 @@ const APP_DEPS = [
   '/js/specificity.js',
   'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js',
-  '/imgs/Cycle_custom_icon.json'
+  '/imgs/Cycle_custom_icon.json',
+  '/questions/__all__.js'
 ];
 
-async function loadDependencies(deps) {
+async function loadDependencies(deps, callback) {
   let done = 0;
   render({
     content: `
@@ -41,16 +43,15 @@ async function loadDependencies(deps) {
         if (typeof _ !== 'undefined') {
           window.get = _.get;
         }
-        ILoveWeb.initQuestions();
-        showContent();
+        callback();
       }
     }
   )
 }
-export function showContent() {
+function showContent() {
   render({
     content: `
-      <div class="game-progress mxauto">
+      ${ILoveWeb.mode === 'QUIZ' ? `<div class="game-progress mxauto">
         <div class="line-progress">
           <div class="animation">
             <div class="timer"></div>
@@ -58,7 +59,7 @@ export function showContent() {
           </div>
         </div>
         <div class="heart">❤️</div>
-      </div>
+      </div>` : `<h1 class="tac my2">I ❤️ Web</h1>`}
       <div class="editor">
         <section class="question"></section>
         <section class="area">
@@ -84,10 +85,6 @@ export function showContent() {
       // ------------------------------------------------------------------------------ question
       function showQuestion() {
         const question = ILoveWeb.questions[questionIdx];
-        if (!question) {
-          win();
-          return;
-        }
         render({
           content: `
             <div class="z1 lang">${question.lang.toUpperCase()}</div>
@@ -102,20 +99,33 @@ export function showContent() {
         clearInterval(timeInterval);
         editorEl.style.display = 'block';
         const numOfquestions = ILoveWeb.questions.length;
+        const social = `
+          <br /><br />
+          <a href="https://twitter.com/intent/tweet?text=${getTwitterShareURL(convertMsToHM(time))}">
+            <img src="/imgs/twitter.svg" width="20"/>
+            Share
+          </a>
+        `;
+        const message = ILoveWeb.mode === 'QUIZ' ?
+          `
+          <p class="tac mt1">
+            You just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${convertMsToHM(time)} time.
+            ${social}
+          </p>
+          ` :
+          `
+          <p class="tac mt1">
+            Did you like this one? Solve more puzzles <a href="/">here</a>.
+            ${social}
+          </p>
+          `;
         render({
           container: editorEl,
           content: `
             <section class="w500 mxauto">
               <h1 class="tac">Congratulations!</h1>
               <small class="block tac">You really ❤️ the web.</small>
-              <p class="tac mt1">
-                You just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${convertMsToHM(time)} time.
-                <br /><br />
-                <a href="https://twitter.com/intent/tweet?text=${getTwitterShareURL(convertMsToHM(time))}">
-                  <img src="/imgs/twitter.svg" width="20"/>
-                  Share
-                </a>
-              </p>
+              ${message}
             </section>
           `
         });
@@ -134,13 +144,17 @@ export function showContent() {
           textareaEl.value,
           questionIdx,
           () => {
-            questionIdx += 1;
             updateProgress();
             gsap.to(textareaEl, { backgroundColor: '#FF7E7E', color: '#000', duration: 0.1, onComplete: () => {
               gsap.to(textareaEl, { opacity: 0, delay: 0.1 });
               gsap.to(questionEl, { opacity: 0, delay: 0.1, onComplete: () => {
-                showQuestion();
-                showTextarea();
+                questionIdx += 1;
+                if (!ILoveWeb.questions[questionIdx]) {
+                  win();
+                } else {
+                  showQuestion();
+                  showTextarea();
+                }
               }});
             }});
           },
@@ -162,6 +176,7 @@ export function showContent() {
       });
       // ------------------------------------------------------------------------------ progress
       function initProgresS() {
+        if (ILoveWeb.mode === 'SINGLE') return;
         player = lottie.loadAnimation({
           container: $('.game-progress .animation .lottie'),
           renderer: 'svg',
@@ -172,12 +187,14 @@ export function showContent() {
         gsap.fromTo($('.game-progress'), { x: '-100px', opacity: 0 }, { x: 0, opacity: 1 });
       }
       function setTimer() {
+        if (ILoveWeb.mode === 'SINGLE') return;
         timeInterval = setInterval(() => {
           time += 1000;
           timeEl.innerHTML = `${questionIdx}/${ILoveWeb.questions.length} · ${convertMsToHM(time)}`;
         }, 1000);
       }
       function updateProgress() {
+        if (ILoveWeb.mode === 'SINGLE') return;
         const line = $('.line-progress');
         const speedRange = [0.2, 8]
         const percentage = Math.ceil(questionIdx / ILoveWeb.questions.length * 100);
@@ -192,15 +209,17 @@ export function showContent() {
 
       showQuestion();
       showTextarea();
+      showFooter();
       initProgresS();
       updateProgress();
       setTimer();
-      showFooter();
     }
   });
 }
 
 window.addEventListener('load', () => {
-  const deps = [...APP_DEPS, QUESTIONS_FILE];
-  loadDependencies(deps);
+  loadDependencies(APP_DEPS, () => {
+    ILoveWeb.init();
+    showContent();
+  });
 });

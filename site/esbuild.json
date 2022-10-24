@@ -1,11 +1,11 @@
 {
   "inputs": {
-    "lib/client/js/api.js": {
-      "bytes": 3193,
+    "lib/client/js/utils/question-tooling.js": {
+      "bytes": 1338,
       "imports": []
     },
     "lib/client/js/utils/helpers.js": {
-      "bytes": 2763,
+      "bytes": 3268,
       "imports": [
         {
           "path": "lib/client/js/api.js",
@@ -13,9 +13,22 @@
         }
       ]
     },
-    "lib/client/js/index.js": {
-      "bytes": 6931,
+    "lib/client/js/api.js": {
+      "bytes": 2001,
       "imports": [
+        {
+          "path": "lib/client/js/utils/helpers.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "lib/client/js/index.js": {
+      "bytes": 7536,
+      "imports": [
+        {
+          "path": "lib/client/js/utils/question-tooling.js",
+          "kind": "import-statement"
+        },
         {
           "path": "lib/client/js/api.js",
           "kind": "import-statement"
@@ -33,17 +46,20 @@
       "exports": [],
       "entryPoint": "lib/client/js/index.js",
       "inputs": {
-        "lib/client/js/api.js": {
-          "bytesInOutput": 1839
+        "lib/client/js/utils/question-tooling.js": {
+          "bytesInOutput": 815
         },
         "lib/client/js/utils/helpers.js": {
-          "bytesInOutput": 1343
+          "bytesInOutput": 1722
+        },
+        "lib/client/js/api.js": {
+          "bytesInOutput": 949
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 4022
+          "bytesInOutput": 4353
         }
       },
-      "bytes": 7216
+      "bytes": 7851
     }
   }
 }

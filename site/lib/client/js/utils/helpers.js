@@ -79,6 +79,19 @@ export function convertMsToHM(milliseconds) {
   return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
 }
 export function getTwitterShareURL(time) {
-  const numOfquestions = ILoveWeb.questions.length;
-  return encodeURIComponent(`I ❤️ the Web platform and I tested my knowledge at https://iloveweb.dev. I just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${time} time. What about you? Do you know your base?\n\n#iloveweb #web #platform`);
+  if (ILoveWeb.mode === 'QUIZ') {
+    const numOfquestions = ILoveWeb.questions.length;
+    return encodeURIComponent(`I ❤️ the Web platform and I tested my knowledge at https://iloveweb.dev. I just nailed ${numOfquestions} dev question${numOfquestions === 1 ? '' : 's'} for ${time} time. What about you? Do you know your base?\n\n#iloveweb #web #platform`);
+  } else {
+    const topic = (ILoveWeb.questions[0].lang || '').toUpperCase();
+    return encodeURIComponent(`I ❤️ the Web platform and I tested my knowledge at https://iloveweb.dev. I just nailed a question about ${topic}. What about you? Do you know your base?\n\n#iloveweb #web #platform`);
+  }
+}
+export function GETParam(name) {
+  try {
+    const url = new URL(location.href);
+    return url.searchParams.get(name);
+  } catch(err) {
+    console.log(err);
+  }
 }

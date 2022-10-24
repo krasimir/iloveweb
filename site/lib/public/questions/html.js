@@ -2,6 +2,7 @@ ILoveWeb.load({
   lang: 'html',
   tasks: [
     {
+      id: 'KP4bUO3LGl',
       text: 'Create HTML structure with nested elements.',
       validator(tree) {
         let success = false;
@@ -16,6 +17,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: '0pqX6RrTrI',
       text: 'Use &lt;img /&gt; tag. Set "cat.jpg" as a value of the "src" attribute.',
       validator(tree) {
         let success = false;
@@ -30,6 +32,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'dRydZfzcsM',
       text: 'Create a title.',
       validator(tree) {
         let success = false;
@@ -42,6 +45,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'IqnhDcdSHv',
       text: 'Create an unordered list.',
       validator(tree) {
         let success = false;
@@ -58,6 +62,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'ICU_zTA0Pq',
       text: 'Create an ordered list.',
       validator(tree) {
         let success = false;
@@ -74,6 +79,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'ILJdHegpoN',
       text: 'Create a table with 3 rows and 2 columns.',
       validator(tree) {
         let success = false;
@@ -100,6 +106,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'vPviSmh9Ky',
       text: 'Combine correctly &lt;span> and &lt;p> element, so the inline element to be nested inside the block element.',
       validator(tree) {
         let success = false;
@@ -117,6 +124,7 @@ ILoveWeb.load({
       answer: '<p><span></span></p>'
     },
     {
+      id: '1r-TCCexRs',
       text: 'Add a HTML tag that loads a file with name "my-styles.css".',
       validator(tree) {
         let success = false;
@@ -131,6 +139,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'R4hcIa4lar',
       text: 'Add a video to your HTML page. The filename is "lesson.mp4".',
       validator(tree) {
         let success = false;
@@ -147,6 +156,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'UURSUuiKiG',
       text: 'Add a HTML element that allows the user to pick a color.',
       validator(tree) {
         let success = false;
@@ -159,6 +169,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: '2Pfcgq6PCP',
       text: 'Add a HTML element that allows the user to pick a date.',
       validator(tree) {
         let success = false;
@@ -171,6 +182,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'B2OvNGkEip',
       text: 'Add a HTML element that allows the user to type a password.',
       validator(tree) {
         let success = false;
@@ -183,6 +195,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'uE1e7cgAc1',
       text: 'Create HTML input elements that answer a one-of-many question.',
       validator(tree) {
         let success = false;
@@ -201,6 +214,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'ek0P54NIO1',
       text: 'Create HTML that shows a drop-down menu.',
       validator(tree) {
         let success = false;
@@ -217,6 +231,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'aKRbL070WQ',
       text: 'Let\'s say that we have a page with header and navigation containing 3 &lt;a> tags. Write a semantically correct HTML.',
       validator(tree) {
         let numOfLinks = 0;
@@ -237,6 +252,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: '_6CIl4FDa8',
       text: 'Create HTML page that has a title "iloveweb".',
       validator(tree) {
         let success = false;
@@ -255,6 +271,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'Hv714OPVvU',
       text: 'Set the encoding of a HTML page to "UTF-16".',
       validator(tree) {
         let metaExists = false;
@@ -267,6 +284,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'KjgUtt9xer',
       text: 'Set the encoding of a HTML page to "UTF-8".',
       validator(tree) {
         let metaExists = false;
@@ -279,6 +297,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'N0OWPDwnOW',
       text: 'Set an inline style of a &lt;section> element.',
       validator(tree) {
         let success = false;
@@ -291,6 +310,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: '197W-Rnv-6',
       text: 'Write an iframe that loads "banner.html" in 300x300 area.',
       validator(tree) {
         let success = false;
@@ -308,6 +328,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'BUd6AXJm2K',
       text: 'Write code that results in 3 HTML tags and 1 HTML elements.',
       validator(tree) {
         const oneTagElements = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
@@ -331,6 +352,7 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'dlnjBX9IR6',
       text: 'Write code that results in 4 HTML tags and 2 HTML elements.',
       validator(tree) {
         const oneTagElements = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
