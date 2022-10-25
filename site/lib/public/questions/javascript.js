@@ -186,6 +186,103 @@ function test() {
         `);
         return f() === true;
       }
+    },
+    {
+      id: 'tyucExdIAr',
+      text: `In the following code, write the body of the "print" method so it returns the full name of the user ("Thomas Anderson").<code>const&nbsp;User&nbsp;=&nbsp;{\n&nbsp;&nbsp;firstName:&nbsp;'Thomas',\n&nbsp;&nbsp;lastName:&nbsp;'Anderson',\n&nbsp;&nbsp;print()&nbsp;{\n\n&nbsp;&nbsp;}\n}</code>`,
+      validator(code) {
+        const f = new Function(`
+const User = {
+  firstName: 'Thomas',
+  lastName: 'Anderson',
+  print() {
+    ${code}
+  }
+}
+          return User.print();
+        `);
+        return f() === 'Thomas Anderson';
+      }
+    },
+    {
+      id: '2doeBBeUjS',
+      text: `Write a multi-line comment.`,
+      validator(code) {
+        if (code.match(/\/\*([\s\S]*?)\*\//g)) {
+          return true;
+        }
+      }
+    },
+    {
+      id: '2doe00eUjS',
+      text: `You have the following HTML form:<code>&lt;form&nbsp;id=\"registration\">\n&nbsp;&nbsp;&lt;input&nbsp;type=\"text\"&nbsp;name=\"name\"&nbsp;/>\n&nbsp;&nbsp;&lt;input&nbsp;type=\"password\"&nbsp;name=\"pass\"&nbsp;/>\n&lt;/form></code>Submit it with JavaScript.`,
+      validator(code) {
+        const f = new Function(`
+let domEl = { submit() { return 'ok'; }};
+let validSelector = ['#registration', 'form', 'form#registration'];
+const document = {
+  querySelector(sel) {
+    return validSelector.includes(sel) ? domEl : null;
+  },
+  querySelectorAll(sel) {
+    return validSelector.includes(sel) ? [domEl] : [];
+  },
+  getElementById(sel) {
+    return sel === 'registration' ? domEl : null;
+  }
+}
+return ${code};
+        `);
+        return f() === 'ok';
+      }
+    },
+    {
+      id: '1doe00eUjS',
+      text: `By using the "domEl" variable, set the string "promo" as a value of a "data-type" attribute.<code>var&nbsp;domEl&nbsp;=&nbsp;document.querySelector('p');</code>`,
+      validator(code) {
+        const f = new Function(`
+let success = false;
+let domEl = {
+  setAttribute(attr, value) {
+    if (attr === 'data-type' && value === 'promo') {
+      success = 'ok';
+    }
+  }
+};
+${code};
+return success;
+        `);
+        return f() === 'ok';
+      }
+    },
+    {
+      id: '1doe56eUaS',
+      text: `Write some code so the "user" object contains both "firstName" and "lastName".<code>const&nbsp;a&nbsp;=&nbsp;{&nbsp;firstName:&nbsp;'Thomas'&nbsp;};\nconst&nbsp;b&nbsp;=&nbsp;{&nbsp;lastName:&nbsp;'Anderson'&nbsp;}\nconst&nbsp;user&nbsp;=&nbsp;&lt;your&nbsp;code&nbsp;here></code>`,
+      validator(code) {
+        const f = new Function(`
+const a = { firstName: 'Thomas' };
+const b = { lastName: 'Anderson' }
+const user = ${code}
+return user.firstName + ' ' + user.lastName;
+        `);
+        return f() === 'Thomas Anderson';
+      }
+    },
+    {
+      id: '15oejdkauA',
+      text: `Write down the result of the print function in the following snippet:<code>const&nbsp;data&nbsp;=&nbsp;[12,&nbsp;'a',&nbsp;'c'];\ndata.pop();\ndata.shift();\nfunction&nbsp;print()&nbsp;{\n&nbsp;&nbsp;return&nbsp;data[0]&nbsp;+&nbsp;20;\n}</code>`,
+      validator(code) {
+        const f = new Function(`
+const data = [12, 'a', 'c'];
+data.pop();
+data.shift();
+function print() {
+  return data[0] + 20;
+}
+return print() === "${code}" ? 'ok' : 'no';
+        `);
+        return f() === 'ok';
+      }
     }
   ]
 });
