@@ -1,6 +1,6 @@
 import './utils/question-tooling';
 import ILoveWeb from './api';
-import { render, center, loadFile, $, convertMsToHM, getTwitterShareURL } from './utils/helpers';
+import { render, center, loadFile, $, convertMsToHM, getTwitterShareURL, trackEvent } from './utils/helpers';
 
 const APP_DEPS = [
   '/js/cssparser.min.js',
@@ -144,6 +144,7 @@ function showContent() {
           textareaEl.value,
           questionIdx,
           () => {
+            trackEvent('task-done', { id: ILoveWeb.questions[questionIdx].question.id })
             gsap.to(textareaEl, { backgroundColor: '#FF7E7E', color: '#000', duration: 0.1, onComplete: () => {
               gsap.to(textareaEl, { opacity: 0, delay: 0.1 });
               gsap.to(questionEl, { opacity: 0, delay: 0.1, onComplete: () => {

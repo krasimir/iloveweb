@@ -95,3 +95,9 @@ export function GETParam(name) {
     console.log(err);
   }
 }
+export function trackEvent(name, data = {}) {
+  dataLayer.push({
+    event: name,
+    ...data
+  });
+}

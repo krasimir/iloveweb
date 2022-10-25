@@ -31,7 +31,7 @@ async function setup(viewport) {
 async function createScreenshot(id) {
   await setup();
   const filename = `question_${id}.png`;
-  const url =`${HOST}/preview?id=${id}`;
+  const url =`${HOST}/preview?q=${id}`;
   const screenshot = path.normalize(PUBLIC + filename);
   const response = await page.goto(url, { waitUntil: "networkidle2" });
   const status = response.status ? response.status() : 'unknown';
