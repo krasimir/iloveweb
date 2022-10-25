@@ -45,6 +45,59 @@ ILoveWeb.load({
       }
     },
     {
+      id: 'dRy26fzcsM',
+      text: 'Add a line break, smallest heading and a horizontal rule.',
+      validator(tree) {
+        let tags = {};
+        window.walkHTML(tree, (el) => {
+          tags[el.tag] = true;          
+        });
+        return ['br', 'h6', 'hr'].every(tag => Object.keys(tags).includes(tag));
+      }
+    },
+    {
+      id: 'a-4426fzcsM',
+      text: 'Create a link that opens "https://iloveweb.dev" in the full body of the window.',
+      validator(tree) {
+        let success = false;
+        window.walkHTML(tree, (el) => {
+          if (get(el, 'tag') === 'a' && get(el, 'attr.href', '').toLowerCase() === 'https://iloveweb.dev' && get(el, 'attr.target', '').toLowerCase() === '_top') {
+            success = true;
+          }      
+        });
+        return success;
+      }
+    },
+    {
+      id: 'qN9k9igRkQ',
+      text: 'Create the following table: <table border="2"><tr><th>name</th><th>age</th></tr><tr><td>John</td><td>37</td></tr><tr><td>Juline</td><td>49</td></tr></table>',
+      validator(tree) {
+        let success = false;
+        window.walkHTML(tree, (el) => {
+          let data = [];
+          if (el.tag === 'table') {
+            window.walkHTML(el, (tableChild) => {
+              if (tableChild.tag === 'tr' || tableChild.tag === 'th') {
+                window.walkHTML(tableChild, (rowChild) => {
+                  if (rowChild.tag === 'td' || rowChild.tag === 'th') {
+                    window.walkHTML(rowChild, (columnText) => {
+                      if (columnText.node === 'text') {
+                        data.push(columnText.text)
+                      }
+                    });
+                  }
+                });
+              }
+            });            
+          }
+          if (['name', 'age', 'age', 'John', '37', 'Juline', '49'].every(item => data.includes(item))) {
+            success = true;
+          }
+        });
+        return success;
+      }
+    },
+    {
       id: 'IqnhDcdSHv',
       text: 'Create an unordered list.',
       validator(tree) {

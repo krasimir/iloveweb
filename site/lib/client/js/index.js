@@ -88,10 +88,7 @@ function showContent() {
       function showQuestion() {
         const question = ILoveWeb.questions[questionIdx];
         render({
-          content: `
-            <div class="z1 lang">${question.lang.toUpperCase()}</div>
-            <div class="z2">${question.question.text}</div>
-          `,
+          content: `<div class="z2">${question.lang.toUpperCase()}: ${question.question.text}</div>`,
           container: questionEl
         });
         gsap.fromTo(questionEl, { y: '100px', opacity: 0 }, { y: 0, opacity: 1 });

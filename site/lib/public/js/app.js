@@ -35,16 +35,13 @@
       <footer class="tac">
         Build by <a href="https://twitter.com/KrasimirTsonev" target="_blank">@krasimirtsonev</a>. Contribute with more questions <a href="https://github.com/krasimir/iloveweb" target="_blank">here</a>.
       </footer>
-    `,onRender(){let e=0,t,o=0,s,r=c(".editor"),a=c(".editor .question"),i=c(".editor textarea"),u=c(".editor .console"),d=c(".timer");function w(){let l=n.questions[e];m({content:`
-            <div class="z1 lang">${l.lang.toUpperCase()}</div>
-            <div class="z2">${l.question.text}</div>
-          `,container:a}),gsap.fromTo(a,{y:"100px",opacity:0},{y:0,opacity:1})}function f(){t&&t.stop(),clearInterval(s),r.style.display="block",d&&(d.innerHTML=`${n.questions.length}/${n.questions.length} \xB7 ${h(o)}`);let l=n.questions.length,p=`
+    `,onRender(){let e=0,t,o=0,s,r=c(".editor"),a=c(".editor .question"),i=c(".editor textarea"),u=c(".editor .console"),d=c(".timer");function v(){let l=n.questions[e];m({content:`<div class="z2">${l.lang.toUpperCase()}: ${l.question.text}</div>`,container:a}),gsap.fromTo(a,{y:"100px",opacity:0},{y:0,opacity:1})}function f(){t&&t.stop(),clearInterval(s),r.style.display="block",d&&(d.innerHTML=`${n.questions.length}/${n.questions.length} \xB7 ${h(o)}`);let l=n.questions.length,p=`
           <br /><br />
           <a href="https://twitter.com/intent/tweet?text=${x(h(o))}">
             <img src="/imgs/twitter.svg" width="20"/>
             Share
           </a>
-        `,v=n.mode==="QUIZ"?`
+        `,w=n.mode==="QUIZ"?`
           <p class="tac mt1">
             You just nailed ${l} dev question${l===1?"":"s"} for ${h(o)} time.
             ${p}
@@ -58,6 +55,6 @@
             <section class="w500 mxauto">
               <h1 class="tac">Congratulations!</h1>
               <small class="block tac">You really \u2764\uFE0F the web.</small>
-              ${v}
+              ${w}
             </section>
-          `}),gsap.fromTo(r,{y:"100px",opacity:0},{y:0,opacity:1,ease:"back.out(1.7)",duration:1.4})}function g(){i.value="",gsap.fromTo(i,{y:"100px",opacity:0,background:"#1c1d1f",color:"#e9e9e9"},{y:0,opacity:1,delay:.1})}i.focus(),i.addEventListener("input",()=>{u.innerHTML="",n.check(i.value,e,()=>{gsap.to(i,{backgroundColor:"#FF7E7E",color:"#000",duration:.1,onComplete:()=>{gsap.to(i,{opacity:0,delay:.1}),gsap.to(a,{opacity:0,delay:.1,onComplete:()=>{e+=1,q(),n.questions[e]?(w(),g()):f()}})}})},l=>{u.innerHTML=l})}),i.addEventListener("keydown",function(l){l.key=="Tab"&&(l.preventDefault(),i.setRangeText("  ",i.selectionStart,i.selectionStart,"end"))});function E(){n.mode!=="SINGLE"&&(t=lottie.loadAnimation({container:c(".game-progress .animation .lottie"),renderer:"svg",loop:!0,autoplay:!0,path:"/imgs/Cycle_custom_icon.json"}),gsap.fromTo(c(".game-progress"),{x:"-100px",opacity:0},{x:0,opacity:1}))}function L(){n.mode!=="SINGLE"&&(clearInterval(s),s=setInterval(()=>{o+=1e3,d.innerHTML=`${e}/${n.questions.length} \xB7 ${h(o)}`},1e3))}function q(){if(n.mode==="SINGLE")return;let l=c(".line-progress"),p=[.2,8],v=Math.ceil(e/n.questions.length*100),k=p[0]+v/100*(p[1]-p[0]);l.style.width=`${v}%`,t.setSpeed(k)}function M(){gsap.fromTo(c("footer"),{y:"100px",opacity:0},{y:0,opacity:.4,delay:.3,duration:.8})}w(),g(),M(),E(),q(),L()}})}window.addEventListener("load",()=>{Q(O,()=>{n.init(),F()})});})();
+          `}),gsap.fromTo(r,{y:"100px",opacity:0},{y:0,opacity:1,ease:"back.out(1.7)",duration:1.4})}function g(){i.value="",gsap.fromTo(i,{y:"100px",opacity:0,background:"#1c1d1f",color:"#e9e9e9"},{y:0,opacity:1,delay:.1})}i.focus(),i.addEventListener("input",()=>{u.innerHTML="",n.check(i.value,e,()=>{gsap.to(i,{backgroundColor:"#FF7E7E",color:"#000",duration:.1,onComplete:()=>{gsap.to(i,{opacity:0,delay:.1}),gsap.to(a,{opacity:0,delay:.1,onComplete:()=>{e+=1,q(),n.questions[e]?(v(),g()):f()}})}})},l=>{u.innerHTML=l})}),i.addEventListener("keydown",function(l){l.key=="Tab"&&(l.preventDefault(),i.setRangeText("  ",i.selectionStart,i.selectionStart,"end"))});function E(){n.mode!=="SINGLE"&&(t=lottie.loadAnimation({container:c(".game-progress .animation .lottie"),renderer:"svg",loop:!0,autoplay:!0,path:"/imgs/Cycle_custom_icon.json"}),gsap.fromTo(c(".game-progress"),{x:"-100px",opacity:0},{x:0,opacity:1}))}function L(){n.mode!=="SINGLE"&&(clearInterval(s),s=setInterval(()=>{o+=1e3,d.innerHTML=`${e}/${n.questions.length} \xB7 ${h(o)}`},1e3))}function q(){if(n.mode==="SINGLE")return;let l=c(".line-progress"),p=[.2,8],w=Math.ceil(e/n.questions.length*100),k=p[0]+w/100*(p[1]-p[0]);l.style.width=`${w}%`,t.setSpeed(k)}function M(){gsap.fromTo(c("footer"),{y:"100px",opacity:0},{y:0,opacity:.4,delay:.3,duration:.8})}v(),g(),M(),E(),q(),L()}})}window.addEventListener("load",()=>{Q(O,()=>{n.init(),F()})});})();

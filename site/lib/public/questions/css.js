@@ -4,6 +4,15 @@ const CSS_SELECTORS_1_HTML = `<section>
     <span>B</span>
   </p>
 </section>`;
+const CSS_SELECTORS_2_HTML = `<div>
+  <header>
+    <h1>Hello World</h1>
+    <p>We are...</p>
+  </header>
+  <section>
+    <p>Welcome...</p>
+  </section>
+</div>`;
 
 const CSS_VALUES_1_HTML = `<body style="font-size:30px;">
 <p style="font-size:2em;">foo</p>
@@ -44,6 +53,24 @@ ILoveWeb.load({
           selectors.forEach((selector) => {
             const element = window.matchSelectorToHTML(selector, CSS_SELECTORS_1_HTML);
             if (!!element && element.innerText === 'B' && isThereColor) {
+              success = true;
+            }
+          });
+        });
+        return success;
+      }
+    },
+    {
+      id: 'BHopCKsi2I',
+      text: `Set the font's size of the paragraph with text "Welcome..." in the following HTML snippet:${html2CodeText(CSS_SELECTORS_2_HTML)}`,
+      validator(ast) {
+        const tree = ast.toJSON('simple');
+        let success = false;
+        tree.value.forEach(({ type, selectors, declarations }) => {
+          const isThereFontSize = !!declarations['font-size'];
+          selectors.forEach((selector) => {
+            const element = window.matchSelectorToHTML(selector, CSS_SELECTORS_2_HTML);
+            if (!!element && element.innerText === 'Welcome...' && isThereFontSize) {
               success = true;
             }
           });

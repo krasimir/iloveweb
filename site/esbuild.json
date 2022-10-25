@@ -23,7 +23,7 @@
       ]
     },
     "lib/client/js/index.js": {
-      "bytes": 7927,
+      "bytes": 7865,
       "imports": [
         {
           "path": "lib/client/js/utils/question-tooling.js",
@@ -56,10 +56,10 @@
           "bytesInOutput": 949
         },
         "lib/client/js/index.js": {
-          "bytesInOutput": 4490
+          "bytesInOutput": 4428
         }
       },
-      "bytes": 7988
+      "bytes": 7926
     }
   }
 }

@@ -105,10 +105,8 @@ function getAllQuestions() {
   `;
   let questions = [];
   fs.readdirSync(QUESTIONS_DIR).forEach(file => {
-    if (!file.match(/__all__/)) {
-      const code = fs.readFileSync(`${QUESTIONS_DIR}/${file}`).toString('utf-8');
-      questions = questions.concat((new Function(getQuestion(code)))());
-    }
+    const code = fs.readFileSync(`${QUESTIONS_DIR}/${file}`).toString('utf-8');
+    questions = questions.concat((new Function(getQuestion(code)))());
   });
   return questions;
 }

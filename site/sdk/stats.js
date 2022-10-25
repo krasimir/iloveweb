@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { getAllQuestions }=require('./utils');
+const { getAllQuestions } = require('./utils');
 
 const questions = getAllQuestions();
 
