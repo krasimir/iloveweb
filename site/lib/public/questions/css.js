@@ -80,7 +80,7 @@ ILoveWeb.load({
     },
     {
       id: '6LGZosTgq9',
-      text: `Write a valid CSS selector with specificity equal to 130.`,
+      text: `Write a valid CSS rule which's selector has a specificity equal to 130.`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;
@@ -96,7 +96,7 @@ ILoveWeb.load({
     },
     {
       id: 'TC0kEUErLD',
-      text: `Write a valid CSS selector with specificity equal to 021.`,
+      text: `Write a valid CSS rule which's selector has a specificity equal to 021.`,
       validator(ast) {
         const tree = ast.toJSON('simple');
         let success = false;
