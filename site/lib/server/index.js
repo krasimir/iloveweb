@@ -15,8 +15,12 @@ app.use(express.static(__dirname + '/../public', { maxAge: oneWeek }));
 // home and default page
 app.get('/get-id', getId);
 app.get('/preview', preview);
-app.get('/*', handler);
 app.get('/', handler);
+app.use(function (req, res, next) {
+  res.status(404);
+  res.send("404");
+});
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
